@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sair_cpa/screens/login_screen.dart';
+import 'package:sair_cpa/view/app_theme.dart';
+import 'package:sair_cpa/view/screens/home_screen.dart';
+import 'package:sair_cpa/view/screens/login_screen.dart';
+import 'package:sair_cpa/view/screens/main_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,14 +17,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Unified Government Portal',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        scaffoldBackgroundColor: const Color(0xFFF9FAFC),
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF1E508F)),
-        useMaterial3: true,
-        fontFamily: 'Roboto',
-      ),
-      home: const LoginScreen(),
+      theme: AppTheme.lightTheme,
+      home: const MainScreen(),
     );
   }
 }
-

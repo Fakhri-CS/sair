@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:sair_cpa/widgets/login_screen_widgets/bottom_icon_widget.dart';
-import 'package:sair_cpa/widgets/login_screen_widgets/divider_widget.dart';
-import 'package:sair_cpa/widgets/login_screen_widgets/footer_links_widget.dart';
-import 'package:sair_cpa/widgets/login_screen_widgets/login_card_widget.dart';
-import 'package:sair_cpa/widgets/login_screen_widgets/sanad_login_button_widget.dart';
-import 'package:sair_cpa/widgets/login_screen_widgets/top_bar_widget.dart';
+import 'package:sair_cpa/view/widgets/login_screen_widgets/bottom_icon_widget.dart';
+import 'package:sair_cpa/view/widgets/login_screen_widgets/divider_widget.dart';
+import 'package:sair_cpa/view/widgets/login_screen_widgets/footer_links_widget.dart';
+import 'package:sair_cpa/view/widgets/login_screen_widgets/login_card_widget.dart';
+import 'package:sair_cpa/view/widgets/login_screen_widgets/sanad_login_button_widget.dart';
+import 'package:sair_cpa/view/widgets/login_screen_widgets/top_bar_widget.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});

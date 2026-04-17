@@ -11,15 +11,17 @@ class _TopBarWidgetState extends State<TopBarWidget> {
   var _language = "English";
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        // Live System Badge
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border.all(color: Colors.grey.shade300),
+            color: theme.colorScheme.surface,
+            border: Border.all(
+              color: theme.dividerTheme.color ?? theme.dividerColor,
+            ),
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(
@@ -27,26 +29,24 @@ class _TopBarWidgetState extends State<TopBarWidget> {
               Container(
                 width: 8,
                 height: 8,
-                decoration: const BoxDecoration(
-                  color: Color(0xFF1E508F),
+                decoration: BoxDecoration(
+                  color: theme.primaryColor,
                   shape: BoxShape.circle,
                 ),
               ),
               const SizedBox(width: 8),
-              const Text(
+              Text(
                 "LIVE SYSTEM",
-                style: TextStyle(
+                style: theme.textTheme.labelSmall?.copyWith(
                   fontSize: 10,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF1E508F),
+                  color: theme.primaryColor,
                   letterSpacing: 0.5,
                 ),
               ),
             ],
           ),
         ),
-
-        // Language Selector
         InkWell(
           onTap: () {
             setState(() {
@@ -57,27 +57,30 @@ class _TopBarWidgetState extends State<TopBarWidget> {
               }
             });
           },
+          borderRadius: BorderRadius.circular(20),
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             width: 100,
             height: 40,
             decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border.all(color: Colors.grey.shade300),
+              color: theme.colorScheme.surface,
+              border: Border.all(
+                color: theme.dividerTheme.color ?? theme.dividerColor,
+              ),
               borderRadius: BorderRadius.circular(20),
             ),
-            alignment: .center,
+            alignment: Alignment.center,
             child: Row(
-              mainAxisSize: .min,
+              mainAxisSize: MainAxisSize.min,
               children: [
-                const Icon(Icons.translate, size: 16, color: Color(0xFF1E508F)),
+                Icon(Icons.translate, size: 16, color: theme.primaryColor),
                 const SizedBox(width: 8),
                 Text(
                   _language,
-                  style: const TextStyle(
+                  style: theme.textTheme.labelSmall?.copyWith(
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black87,
+                    color: theme.colorScheme.onSurface,
                   ),
                 ),
               ],

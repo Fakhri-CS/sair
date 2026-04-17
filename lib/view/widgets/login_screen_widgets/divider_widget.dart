@@ -2,23 +2,28 @@ import 'package:flutter/material.dart';
 
 class DividerWidget extends StatelessWidget {
   const DividerWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Row(
       children: [
-        Expanded(child: Divider(color: Colors.grey.shade300)),
+        const Expanded(child: Divider()),
+
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Text(
             "OR",
-            style: TextStyle(
+            style: theme.textTheme.labelSmall?.copyWith(
               fontSize: 12,
               fontWeight: FontWeight.bold,
-              color: Colors.grey.shade500,
+              color: theme.textTheme.labelSmall?.color,
             ),
           ),
         ),
-        Expanded(child: Divider(color: Colors.grey.shade300)),
+
+        const Expanded(child: Divider()),
       ],
     );
   }
