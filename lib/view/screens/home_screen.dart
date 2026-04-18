@@ -10,41 +10,38 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const DashboardTitleWidget(),
-            const SizedBox(height: 40),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const DashboardTitleWidget(),
+          const SizedBox(height: 40),
 
-            const IncidentCtaWidget(),
-            const SizedBox(height: 24),
+          const IncidentCtaWidget(),
+          const SizedBox(height: 24),
 
-            Text(
-              "Recent Activity",
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const SizedBox(height: 16),
+          Text(
+            "Recent Activity",
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          const SizedBox(height: 16),
 
-            ReportCardWidget(
-              reportId: "SR-99281",
-              status: "approved",
-              submittedDate: "24 Oct 2023",
-              location: "Al-Olaya, Riyadh",
-              category: "Road Maintenance",
-              onViewDetails: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text("Opening details for SR-99281")),
-                );
-              },
-            ),
-            const SizedBox(height: 24),
+          ReportCardWidget(
+            reportId: "SR-99281",
+            status: "approved",
+            submittedDate: "24 Oct 2023",
+            location: "Al-Olaya, Riyadh",
+            category: "Road Maintenance",
+            onViewDetails: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text("Opening details for SR-99281")),
+              );
+            },
+          ),
+          const SizedBox(height: 24),
 
-            const SafetyBannerWidget(),
-            const SizedBox(height: 20),
-          ],
-        ),
+          const SafetyBannerWidget(),
+          const SizedBox(height: 20),
+        ],
       ),
     );
   }

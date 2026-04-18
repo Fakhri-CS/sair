@@ -39,7 +39,6 @@ class ReportsScreen extends StatelessWidget {
       },
     ];
     return ListView(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
       children: [
         HeaderSectionWidget(reportCount: activeReports.length),
         const SizedBox(height: 24),

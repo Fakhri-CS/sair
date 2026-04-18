@@ -43,7 +43,10 @@ class _MainScreenState extends State<MainScreen> {
     }
     return Scaffold(
       appBar: activeAppBar,
-      body: SafeArea(child: activeScreen),
+      body: SafeArea(child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
+        child: activeScreen,
+      )),
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectPage,
         currentIndex: _selectedPageIndex,
