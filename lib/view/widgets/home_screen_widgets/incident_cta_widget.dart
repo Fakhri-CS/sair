@@ -17,53 +17,56 @@ class IncidentCtaWidget extends StatelessWidget {
         ),
         const SizedBox(height: 20),
 
-        Container(
-          width: double.infinity,
-          padding: const EdgeInsets.symmetric(vertical: 32),
-          decoration: BoxDecoration(
-            color: theme.primaryColor,
-            borderRadius: BorderRadius.circular(28),
-            boxShadow: [
-              BoxShadow(
-                color: theme.primaryColor.withValues(alpha:0.3),
-                blurRadius: 20,
-                offset: const Offset(0, 10),
-              ),
-            ],
-          ),
-          child: Column(
-            children: [
-              Container(
-                width: 72,
-                height: 72,
-                decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha:0.15),
-                  shape: BoxShape.circle,
-                  border: Border.all(color: AppTheme.borderLight)
+        InkWell(
+          onTap: () => Navigator.pushNamed(context, '/report_form'),
+          child: Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(vertical: 32),
+            decoration: BoxDecoration(
+              color: theme.primaryColor,
+              borderRadius: BorderRadius.circular(28),
+              boxShadow: [
+                BoxShadow(
+                  color: theme.primaryColor.withValues(alpha:0.3),
+                  blurRadius: 20,
+                  offset: const Offset(0, 10),
                 ),
-                child: Icon(
-                  Icons.warning,
-                  color: theme.colorScheme.onPrimary,
-                  size: 32,
+              ],
+            ),
+            child: Column(
+              children: [
+                Container(
+                  width: 72,
+                  height: 72,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha:0.15),
+                    shape: BoxShape.circle,
+                    border: Border.all(color: AppTheme.borderLight)
+                  ),
+                  child: Icon(
+                    Icons.warning,
+                    color: theme.colorScheme.onPrimary,
+                    size: 32,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 20),
-              Text(
-                "Report Minor Accident",
-                style: theme.textTheme.titleMedium!.copyWith(
-                  color: theme.colorScheme.onPrimary,
-                  fontSize: 18,
+                const SizedBox(height: 20),
+                Text(
+                  "Report Minor Accident",
+                  style: theme.textTheme.titleMedium!.copyWith(
+                    color: theme.colorScheme.onPrimary,
+                    fontSize: 18,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                "Report Now - (سير)",
-                style: theme.textTheme.bodyMedium!.copyWith(
-                  color: theme.colorScheme.onPrimary.withValues(alpha:0.8),
-                  fontSize: 12,
+                const SizedBox(height: 8),
+                Text(
+                  "Press Here To Report",
+                  style: theme.textTheme.bodyMedium!.copyWith(
+                    color: theme.colorScheme.onPrimary.withValues(alpha:0.8),
+                    fontSize: 12,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ],

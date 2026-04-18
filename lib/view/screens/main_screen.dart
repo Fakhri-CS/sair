@@ -4,7 +4,7 @@ import 'package:sair_cpa/view/screens/profile_screen.dart';
 import 'package:sair_cpa/view/screens/reports_screen.dart';
 import 'package:sair_cpa/view/widgets/global_widgets/sair_app_bar.dart';
 import 'package:sair_cpa/view/widgets/home_screen_widgets/Home_actions_widget.dart';
-import 'package:sair_cpa/view/widgets/reports_screen_widgets/reports_and_profile_actions_widget.dart';
+import 'package:sair_cpa/view/widgets/global_widgets/reports_and_profile_actions_widget.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});

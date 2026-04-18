@@ -6,7 +6,9 @@ class LoginButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pushReplacementNamed(context, '/main');
+      },
       style: ElevatedButton.styleFrom(
         fixedSize: const Size(150, 54),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),

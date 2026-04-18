@@ -18,31 +18,38 @@ class SettingsSectionWidget extends StatelessWidget {
       ),
       child: Column(
         children: [
-          const SettingsTileWidget(
+          SettingsTileWidget(
             icon: Icons.language,
             title: "Language",
             subtitle: "English (US)",
+            onTap: () {},
           ),
           Divider(height: 1, color: theme.dividerTheme.color),
 
-          const SettingsTileWidget(
+          SettingsTileWidget(
             icon: Icons.security_outlined,
             title: "Security",
             subtitle: "2FA Enabled",
+            onTap: () {},
           ),
           Divider(height: 1, color: theme.dividerTheme.color),
 
-          const SettingsTileWidget(
+          SettingsTileWidget(
             icon: Icons.notifications_none_outlined,
             title: "Notifications",
             subtitle: "All enabled",
+            onTap: () {},
           ),
           Divider(height: 1, color: theme.dividerTheme.color),
 
-          const SettingsTileWidget(
+          SettingsTileWidget(
             icon: Icons.logout,
             title: "Logout",
             subtitle: "End current session",
+            onTap: () {
+              Navigator.pushReplacementNamed(context, '/login');
+            },
+
             isDestructive: true,
           ),
         ],

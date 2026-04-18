@@ -6,11 +6,13 @@ class SettingsTileWidget extends StatelessWidget {
     required this.icon,
     required this.title,
     required this.subtitle,
+    required this.onTap,
     this.isDestructive = false,
   });
   final IconData icon;
   final String title, subtitle;
   final bool isDestructive;
+  final void Function() onTap;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -53,9 +55,7 @@ class SettingsTileWidget extends StatelessWidget {
               color: theme.textTheme.bodyMedium?.color,
               size: 20,
             ),
-      onTap: () {
-        // Handle tap logic
-      },
+      onTap: onTap,
     );
   }
 }
