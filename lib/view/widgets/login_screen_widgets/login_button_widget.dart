@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sair_cpa/view/routes.dart';
 
 class LoginButtonWidget extends StatelessWidget {
   const LoginButtonWidget({super.key});
@@ -7,7 +8,7 @@ class LoginButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        Navigator.pushReplacementNamed(context, '/main');
+        Navigator.pushReplacementNamed(context, AppRoute.main.route);
       },
       style: ElevatedButton.styleFrom(
         fixedSize: const Size(150, 54),

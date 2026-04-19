@@ -25,7 +25,6 @@ class LocationTextButtionWidget extends StatelessWidget {
       ),
       style: TextButton.styleFrom(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-  
       ),
     );
   }

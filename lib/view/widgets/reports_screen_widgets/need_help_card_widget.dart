@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sair_cpa/view/routes.dart';
+import 'package:sair_cpa/view_model/is_preview_mode_provider.dart';
 
-class NeedHelpCardWidget extends StatelessWidget {
+class NeedHelpCardWidget extends ConsumerWidget {
   const NeedHelpCardWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     return Container(
       width: double.infinity,
@@ -40,7 +43,8 @@ class NeedHelpCardWidget extends StatelessWidget {
           const SizedBox(height: 20),
           ElevatedButton(
             onPressed: () {
-              Navigator.pushNamed(context, '/report_form');
+              ref.read(isPreviewModeProvider.notifier).state = false;
+              Navigator.pushNamed(context, AppRoute.reportForm.route);
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: theme.primaryColor,

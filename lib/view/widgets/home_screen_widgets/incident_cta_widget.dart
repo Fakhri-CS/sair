@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sair_cpa/view/app_theme.dart';
+import 'package:sair_cpa/view/routes.dart';
+import 'package:sair_cpa/view_model/is_preview_mode_provider.dart';
 
-class IncidentCtaWidget extends StatelessWidget {
+class IncidentCtaWidget extends ConsumerWidget {
   const IncidentCtaWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     return Column(
       children: [
@@ -18,7 +21,10 @@ class IncidentCtaWidget extends StatelessWidget {
         const SizedBox(height: 20),
 
         InkWell(
-          onTap: () => Navigator.pushNamed(context, '/report_form'),
+          onTap: () {
+            ref.read(isPreviewModeProvider.notifier).state = false;
+            Navigator.pushNamed(context, AppRoute.reportForm.route);
+          },
           child: Container(
             width: double.infinity,
             padding: const EdgeInsets.symmetric(vertical: 32),
@@ -27,7 +33,7 @@ class IncidentCtaWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(28),
               boxShadow: [
                 BoxShadow(
-                  color: theme.primaryColor.withValues(alpha:0.3),
+                  color: theme.primaryColor.withValues(alpha: 0.3),
                   blurRadius: 20,
                   offset: const Offset(0, 10),
                 ),
@@ -39,9 +45,9 @@ class IncidentCtaWidget extends StatelessWidget {
                   width: 72,
                   height: 72,
                   decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha:0.15),
+                    color: Colors.white.withValues(alpha: 0.15),
                     shape: BoxShape.circle,
-                    border: Border.all(color: AppTheme.borderLight)
+                    border: Border.all(color: AppTheme.borderLight),
                   ),
                   child: Icon(
                     Icons.warning,
@@ -61,7 +67,7 @@ class IncidentCtaWidget extends StatelessWidget {
                 Text(
                   "Press Here To Report",
                   style: theme.textTheme.bodyMedium!.copyWith(
-                    color: theme.colorScheme.onPrimary.withValues(alpha:0.8),
+                    color: theme.colorScheme.onPrimary.withValues(alpha: 0.8),
                     fontSize: 12,
                   ),
                 ),

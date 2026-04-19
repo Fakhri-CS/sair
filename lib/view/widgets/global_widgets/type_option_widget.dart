@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sair_cpa/view_model/report_form_provider.dart';
+import 'package:sair_cpa/view_model/accident_type_provider.dart';
+import 'package:sair_cpa/view_model/is_preview_mode_provider.dart';
 
 class TypeOptionWidget extends ConsumerWidget {
   const TypeOptionWidget({super.key, required this.title});
@@ -8,12 +9,16 @@ class TypeOptionWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    bool isSelected = ref.watch(reportFormProvider).accidentType == title;
+    final accidentType = ref.watch(accidentTypeProvider);
+    final isPreviewMode = ref.watch(isPreviewModeProvider);
+    bool isSelected = accidentType == title;
     return Expanded(
       child: InkWell(
-        onTap: () {
-          ref.read(reportFormProvider.notifier).updateAccidentType(title);
-        },
+        onTap: isPreviewMode
+            ? null
+            : () {
+                ref.read(accidentTypeProvider.notifier).state = title;
+              },
         borderRadius: BorderRadius.circular(12),
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 14),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sair_cpa/view/routes.dart';
 import 'package:sair_cpa/view/widgets/profile_screen_widgets/settings_tile_widget.dart';
 
 class SettingsSectionWidget extends StatelessWidget {
@@ -22,7 +23,8 @@ class SettingsSectionWidget extends StatelessWidget {
             icon: Icons.language,
             title: "Language",
             subtitle: "English (US)",
-            onTap: () {},
+            onTap: () =>
+                Navigator.of(context).pushNamed(AppRoute.languageScreen.route),
           ),
           Divider(height: 1, color: theme.dividerTheme.color),
 
@@ -30,7 +32,8 @@ class SettingsSectionWidget extends StatelessWidget {
             icon: Icons.security_outlined,
             title: "Security",
             subtitle: "2FA Enabled",
-            onTap: () {},
+            onTap: () =>
+                Navigator.of(context).pushNamed(AppRoute.securityScreen.route),
           ),
           Divider(height: 1, color: theme.dividerTheme.color),
 
@@ -38,7 +41,9 @@ class SettingsSectionWidget extends StatelessWidget {
             icon: Icons.notifications_none_outlined,
             title: "Notifications",
             subtitle: "All enabled",
-            onTap: () {},
+            onTap: () => Navigator.of(
+              context,
+            ).pushNamed(AppRoute.notificationsScreen.route),
           ),
           Divider(height: 1, color: theme.dividerTheme.color),
 
@@ -47,7 +52,7 @@ class SettingsSectionWidget extends StatelessWidget {
             title: "Logout",
             subtitle: "End current session",
             onTap: () {
-              Navigator.pushReplacementNamed(context, '/login');
+              Navigator.pushReplacementNamed(context, AppRoute.login.route);
             },
 
             isDestructive: true,

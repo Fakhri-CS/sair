@@ -3,8 +3,7 @@ import 'package:sair_cpa/view/screens/home_screen.dart';
 import 'package:sair_cpa/view/screens/profile_screen.dart';
 import 'package:sair_cpa/view/screens/reports_screen.dart';
 import 'package:sair_cpa/view/widgets/global_widgets/sair_app_bar.dart';
-import 'package:sair_cpa/view/widgets/home_screen_widgets/Home_actions_widget.dart';
-import 'package:sair_cpa/view/widgets/global_widgets/reports_and_profile_actions_widget.dart';
+import 'package:sair_cpa/view/widgets/global_widgets/main_actions_widget.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -26,27 +25,29 @@ class _MainScreenState extends State<MainScreen> {
     Widget activeScreen = const HomeScreen();
     PreferredSizeWidget activeAppBar = const SairAppBar(
       title: "Hi, Fakhri",
-      actions: [HomeActionsWidget()],
+      actions: [MainActionsWidget()],
     );
     if (_selectedPageIndex == 1) {
       activeScreen = const ReportsScreen();
       activeAppBar = const SairAppBar(
         title: "Reports",
-        actions: [ReportsAndProfileActionsWidget()],
+        actions: [MainActionsWidget()],
       );
     } else if (_selectedPageIndex == 2) {
       activeScreen = const ProfileScreen();
       activeAppBar = const SairAppBar(
         title: "Profile",
-        actions: [ReportsAndProfileActionsWidget()],
+        actions: [MainActionsWidget()],
       );
     }
     return Scaffold(
       appBar: activeAppBar,
-      body: SafeArea(child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
-        child: activeScreen,
-      )),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
+          child: activeScreen,
+        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectPage,
         currentIndex: _selectedPageIndex,

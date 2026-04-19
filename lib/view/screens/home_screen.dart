@@ -25,17 +25,12 @@ class HomeScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
 
-          ReportCardWidget(
+          const ReportCardWidget(
             reportId: "SR-99281",
             status: "approved",
             submittedDate: "24 Oct 2023",
             location: "Al-Olaya, Riyadh",
             category: "Road Maintenance",
-            onViewDetails: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text("Opening details for SR-99281")),
-              );
-            },
           ),
           const SizedBox(height: 24),
 

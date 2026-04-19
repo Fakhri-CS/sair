@@ -54,7 +54,7 @@ class LoginScreen extends StatelessWidget {
 
               // Copyright
               Text(
-                "© 2024 SEER Digital Governance. All Rights Reserved.",
+                "© 2024 SAIR Digital Governance. All Rights Reserved.",
                 style: TextStyle(color: Colors.grey.shade400, fontSize: 10),
               ),
               const SizedBox(height: 20),

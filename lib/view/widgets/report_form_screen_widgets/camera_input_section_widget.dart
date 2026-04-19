@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sair_cpa/view_model/taking_picture_provider.dart';
 
-class CameraInputSectionWidget extends StatelessWidget {
+class CameraInputSectionWidget extends ConsumerWidget {
   const CameraInputSectionWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
 
     return InkWell(
-      onTap: () {
-        // Handle camera launch
+      onTap: () async {
+        await ref.read(takingPictureProvider.notifier).takePicture();
       },
       borderRadius: BorderRadius.circular(16),
       child: Container(
         width: double.infinity,
-        height: 200, // Fixed height or use AspectRatio
+        height: 200,
         decoration: BoxDecoration(
           color: theme.colorScheme.surface,
           borderRadius: BorderRadius.circular(16),
-          // Uses the standard divider color for the border
           border: Border.all(color: theme.dividerTheme.color ?? Colors.grey.shade300),
-          // Subtle shadow for depth
           boxShadow: [
             BoxShadow(
               color: theme.shadowColor.withValues(alpha: 0.02),
@@ -39,7 +39,7 @@ class CameraInputSectionWidget extends StatelessWidget {
                 shape: BoxShape.circle,
               ),
               child: Icon(
-                Icons.camera_outlined, // Aperture-like icon
+                Icons.camera_outlined,
                 size: 32,
                 color: theme.primaryColor,
               ),

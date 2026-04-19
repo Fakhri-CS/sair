@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sair_cpa/view/widgets/report_form_screen_widgets/type_option_widget.dart';
+import 'package:sair_cpa/view/widgets/global_widgets/type_option_widget.dart';
 
 class AccidentTypeCardWidget extends StatefulWidget {
   const AccidentTypeCardWidget({super.key});

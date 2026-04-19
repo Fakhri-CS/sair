@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:sair_cpa/view/widgets/global_widgets/sair_app_bar.dart';
-import 'package:sair_cpa/view/widgets/global_widgets/accident_type_card_widget.dart';
-import 'package:sair_cpa/view/widgets/report_form_screen_widgets/bottom_action_widget.dart';
-import 'package:sair_cpa/view/widgets/report_form_screen_widgets/camera_input_section_widget.dart';
 import 'package:sair_cpa/view/widgets/global_widgets/description_card_widget.dart';
+import 'package:sair_cpa/view/widgets/global_widgets/sair_app_bar.dart';
+import 'package:sair_cpa/view/widgets/report_details_widgets.dart/incident_card_info_widget.dart';
+import 'package:sair_cpa/view/widgets/report_details_widgets.dart/location_preview_card_widget.dart';
+import 'package:sair_cpa/view/widgets/report_details_widgets.dart/report_progress_card_widget.dart';
+import 'package:sair_cpa/view/widgets/report_details_widgets.dart/report_status_card_widget.dart';
+import 'package:sair_cpa/view/widgets/global_widgets/accident_type_card_widget.dart';
 import 'package:sair_cpa/view/widgets/global_widgets/evidence_card_widget.dart';
 import 'package:sair_cpa/view/widgets/global_widgets/license_plate_widgets/license_plate_card_widget.dart';
-import 'package:sair_cpa/view/widgets/report_form_screen_widgets/location_input_section_widget.dart';
-import 'package:sair_cpa/view/widgets/report_form_screen_widgets/report_form_header_widget.dart';
 
-class ReportFormScreen extends StatelessWidget {
-  const ReportFormScreen({super.key});
+class ReportDetailsScreen extends StatelessWidget {
+  const ReportDetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class ReportFormScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
       appBar: SairAppBar(
-        title: "Accident Report",
+        title: "Report Details",
         actions: [
           IconButton(
             onPressed: () => Navigator.of(context).pop(),
@@ -33,21 +33,26 @@ class ReportFormScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ReportFormHeaderWidget(),
+              ReportStatusCardWidget(),
               SizedBox(height: 24),
-              LocationInputSectionWidget(),
+              IncidentInfoCardWidget(),
+              SizedBox(height: 24),
+              LocationPreviewCardWidget(
+                latitude: 'd',
+                longitude: 'd',
+                mapImageUrl: 'd',
+              ),
               SizedBox(height: 24),
               AccidentTypeCardWidget(),
-              SizedBox(height: 16),
+              SizedBox(height: 24),
               LicensePlateCardWidget(),
-              SizedBox(height: 16),
+              SizedBox(height: 24),
               DescriptionCardWidget(),
-              SizedBox(height: 16),
-              CameraInputSectionWidget(),
+              SizedBox(height: 24),
               SizedBox(height: 16),
               EvidenceCardWidget(),
-              SizedBox(height: 32),
-              BottomActionWidget(),
+              SizedBox(height: 16),
+              ReportProgressCardWidget(),
             ],
           ),
         ),

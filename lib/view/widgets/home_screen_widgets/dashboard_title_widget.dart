@@ -21,29 +21,10 @@ class DashboardTitleWidget extends StatelessWidget {
             ),
           ],
         ),
-        Stack(
-          children: [
-            const CircleAvatar(
-              radius: 22,
-              backgroundColor: AppTheme.borderLight,
-            ),
-            Positioned(
-              bottom: 0,
-              right: 0,
-              child: Container(
-                width: 12,
-                height: 12,
-                decoration: BoxDecoration(
-                  color: Colors.green, // Online status indicator
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: theme.colorScheme.surface,
-                    width: 2,
-                  ),
-                ),
-              ),
-            ),
-          ],
+        const CircleAvatar(
+          radius: 22,
+          backgroundColor: AppTheme.borderLight,
+          child: Icon(Icons.person),
         ),
       ],
     );

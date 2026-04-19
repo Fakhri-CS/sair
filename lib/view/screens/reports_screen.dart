@@ -43,7 +43,6 @@ class ReportsScreen extends StatelessWidget {
         HeaderSectionWidget(reportCount: activeReports.length),
         const SizedBox(height: 24),
 
-        // Render the list of Report Cards
         ...activeReports.map(
           (report) => Padding(
             padding: const EdgeInsets.only(bottom: 16.0),
@@ -53,7 +52,6 @@ class ReportsScreen extends StatelessWidget {
               submittedDate: report["date"]!,
               location: report["location"]!,
               category: report["category"]!,
-              onViewDetails: () {},
             ),
           ),
         ),

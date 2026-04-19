@@ -31,6 +31,7 @@ class ProfileCardWidget extends StatelessWidget {
               CircleAvatar(
                 radius: 40,
                 backgroundColor: theme.dividerTheme.color,
+                child: const Icon(Icons.person, size: 40,),
               ),
               Positioned(
                 bottom: 0,
@@ -53,14 +54,14 @@ class ProfileCardWidget extends StatelessWidget {
           const SizedBox(height: 16),
 
           Text(
-            "Ahmed Mansour",
+            "Fakhri",
             style: theme.textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.bold,
             ),
           ),
           const SizedBox(height: 4),
 
-          Text("+971 50 ••• ••89", style: theme.textTheme.bodyMedium),
+          Text("+962777777777", style: theme.textTheme.bodyMedium),
           const SizedBox(height: 16),
 
           Container(

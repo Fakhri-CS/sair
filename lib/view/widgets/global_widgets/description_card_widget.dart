@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sair_cpa/view_model/is_preview_mode_provider.dart';
 
-class DescriptionCardWidget extends StatelessWidget {
+class DescriptionCardWidget extends ConsumerWidget {
   const DescriptionCardWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final isPreviewMode = ref.watch(isPreviewModeProvider);
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -14,7 +17,11 @@ class DescriptionCardWidget extends StatelessWidget {
           children: [
             Row(
               children: [
-                Icon(Icons.description_outlined, size: 18, color: theme.primaryColor),
+                Icon(
+                  Icons.description_outlined,
+                  size: 18,
+                  color: theme.primaryColor,
+                ),
                 const SizedBox(width: 8),
                 Text(
                   "Description",
@@ -23,10 +30,11 @@ class DescriptionCardWidget extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 16),
-            
-            const TextField(
+
+            TextField(
+              enabled: !isPreviewMode,
               maxLines: 4,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: "Add any additional details here...",
                 alignLabelWithHint: true,
               ),
@@ -35,6 +43,5 @@ class DescriptionCardWidget extends StatelessWidget {
         ),
       ),
     );
-
   }
 }

@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sair_cpa/view/routes.dart';
 import 'package:sair_cpa/view/widgets/global_widgets/report_card/info_row_widget.dart';
 import 'package:sair_cpa/view/widgets/global_widgets/report_card/status_badge_widget.dart';
+import 'package:sair_cpa/view_model/is_preview_mode_provider.dart';
 
-class ReportCardWidget extends StatelessWidget {
+class ReportCardWidget extends ConsumerWidget {
   final String reportId;
-  final String
-  status;
+  final String status;
   final String submittedDate;
   final String location;
   final String category;
-  final VoidCallback onViewDetails;
 
   const ReportCardWidget({
     super.key,
@@ -18,11 +19,10 @@ class ReportCardWidget extends StatelessWidget {
     required this.submittedDate,
     required this.location,
     required this.category,
-    required this.onViewDetails,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
 
     return Container(
@@ -109,7 +109,10 @@ class ReportCardWidget extends StatelessWidget {
                 ),
               ),
               InkWell(
-                onTap: onViewDetails,
+                onTap: () {
+                  ref.read(isPreviewModeProvider.notifier).state = true;
+                  Navigator.of(context).pushNamed(AppRoute.reportDetails.route);
+                },
                 borderRadius: BorderRadius.circular(8),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
