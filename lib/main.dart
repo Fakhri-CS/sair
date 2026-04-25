@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sair_cpa/view/app_theme.dart';
 import 'package:sair_cpa/view/routes.dart';
-import 'package:sair_cpa/view/screens/login_screen.dart';
+import 'package:sair_cpa/view/screens/authentication_screens/login_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return ProviderScope(
       child: MaterialApp(
         title: 'Sair',
-        initialRoute: AppRoute.main.route,
+        initialRoute: AppRoute.login.route,
         routes:Routes.routes,
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme,

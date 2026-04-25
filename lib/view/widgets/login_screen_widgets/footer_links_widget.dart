@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sair_cpa/view/routes.dart';
 
 class FooterLinksWidget extends StatelessWidget {
   const FooterLinksWidget({super.key});
@@ -32,7 +33,9 @@ class FooterLinksWidget extends StatelessWidget {
         ),
 
         TextButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pushNamed(AppRoute.registerScreen.route);
+          },
           style: TextButton.styleFrom(
             textStyle: const TextStyle(
               fontSize: 13,

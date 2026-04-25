@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sair_cpa/view/routes.dart';
 
 class NotificationWidget extends StatelessWidget {
   const NotificationWidget({super.key});
@@ -9,14 +10,13 @@ class NotificationWidget extends StatelessWidget {
     return Stack(
       children: [
         IconButton(
-          onPressed: () {},
+          onPressed: () {Navigator.pushNamed(context, AppRoute.notifiactionScreen.route);},
           icon: const Icon(Icons.notifications_none_outlined),
           style: IconButton.styleFrom(
             iconSize: 24,
             foregroundColor: theme.colorScheme.onSurface,
           ),
         ),
-        // Notification Icon with or without red dot (just add if condition)
         Positioned(
           right: 15,
           top: 12,

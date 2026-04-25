@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:sair_cpa/view/screens/accident_location_on_map_screen.dart';
 import 'package:sair_cpa/view/screens/evidence_preview_screen.dart';
-import 'package:sair_cpa/view/screens/login_screen.dart';
+import 'package:sair_cpa/view/screens/authentication_screens/login_screen.dart';
 import 'package:sair_cpa/view/screens/main_screen.dart';
+import 'package:sair_cpa/view/screens/authentication_screens/register_screen.dart';
+import 'package:sair_cpa/view/screens/notification_screen.dart';
 import 'package:sair_cpa/view/screens/report_details_screen.dart';
 import 'package:sair_cpa/view/screens/report_form_screen.dart';
 import 'package:sair_cpa/view/screens/settings_screens/language_screen.dart';
-import 'package:sair_cpa/view/screens/settings_screens/notification_screen.dart';
+import 'package:sair_cpa/view/screens/settings_screens/settings_notification_screen.dart';
 import 'package:sair_cpa/view/screens/settings_screens/security_screen.dart';
 
 enum AppRoute {
@@ -18,7 +20,10 @@ enum AppRoute {
   reportDetails('/report_details'),
   languageScreen('/language'),
   notificationsScreen('/notifications'),
-  securityScreen('/security');
+  securityScreen('/security'),
+  registerScreen('/register'),
+  notifiactionScreen('/notification');
+
   final String route;
   const AppRoute(this.route);
 }
@@ -33,7 +38,10 @@ class Routes {
     AppRoute.evidencePreview.route: (context) => const EvidencePreviewScreen(),
     AppRoute.reportDetails.route: (context) => const ReportDetailsScreen(),
     AppRoute.languageScreen.route: (context) => const LanguageScreen(),
-    AppRoute.notificationsScreen.route: (context) => const NotificationsScreen(),
+    AppRoute.notificationsScreen.route: (context) =>
+        const SettingsNotificationScreen(),
     AppRoute.securityScreen.route: (context) => const SecurityScreen(),
+    AppRoute.registerScreen.route: (context) => const RegisterScreen(),
+    AppRoute.notifiactionScreen.route: (context) => const NotificationsScreen(),
   };
 }

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:sair_cpa/view/widgets/global_widgets/sair_app_bar.dart';
-import 'package:sair_cpa/view/widgets/notification_screen_widgets/notification_tile_widget.dart';
+import 'package:sair_cpa/view/widgets/notification_screen_widget/setting_notification_screen_widget.dart';
 
-class NotificationsScreen extends StatefulWidget {
-  const NotificationsScreen({super.key});
+class SettingsNotificationScreen extends StatefulWidget {
+  const SettingsNotificationScreen({super.key});
 
   @override
-  State<NotificationsScreen> createState() => _NotificationsScreenState();
+  State<SettingsNotificationScreen> createState() => _SettingsNotificationScreenState();
 }
 
-class _NotificationsScreenState extends State<NotificationsScreen> {
+class _SettingsNotificationScreenState extends State<SettingsNotificationScreen> {
   bool _masterToggle = true;
   bool _statusUpdates = true;
   bool _emailAlerts = false;

@@ -1,9 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sair_cpa/view/routes.dart';
 import 'package:sair_cpa/view/widgets/global_widgets/sair_logo_widget.dart';
+import 'package:sair_cpa/view/widgets/global_widgets/text_field_widget.dart';
 import 'package:sair_cpa/view/widgets/login_screen_widgets/login_button_widget.dart';
+import 'package:sair_cpa/view_model/authentication_logic_provider.dart';
 
-class LoginCardWidget extends StatelessWidget {
+class LoginCardWidget extends ConsumerStatefulWidget {
   const LoginCardWidget({super.key});
+
+  @override
+  ConsumerState<LoginCardWidget> createState() => _LoginCardWidgetState();
+}
+
+class _LoginCardWidgetState extends ConsumerState<LoginCardWidget> {
+  final _formKey = GlobalKey<FormState>();
+
+  final _nationalIdController = TextEditingController();
+  final _passwordController = TextEditingController();
+  bool _isPasswordVisible = false;
+
+  @override
+  void dispose() {
+    _nationalIdController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  void _submitForm() {
+    FocusScope.of(context).unfocus();
+
+    // if (_formKey.currentState!.validate()) {
+    //   final nationalId = _nationalIdController.text.trim();
+    //   final password = _passwordController.text;
+
+    //   // TODO: Call your Riverpod Authentication ViewModel here
+    //   // Example:
+    //   // ref.read(authViewModelProvider.notifier).login(nationalId, password);
+    // }
+    Navigator.pushReplacementNamed(context, AppRoute.main.route);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,34 +76,56 @@ class LoginCardWidget extends StatelessWidget {
             textAlign: TextAlign.center,
             style: theme.textTheme.bodyMedium?.copyWith(height: 1.4),
           ),
-          const SizedBox(height: 32),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              "NATIONAL ID / PHONE NUMBER",
-              style: theme.textTheme.labelSmall?.copyWith(
-                letterSpacing: 0.5,
-                fontSize: 10,
-              ),
-            ),
-          ),
-          const SizedBox(height: 8),
-          TextField(
-            decoration: InputDecoration(
-              hintText: "Enter your ID number",
-              prefixIcon: Icon(
-                Icons.person_outline,
-                color: theme.textTheme.bodyMedium?.color?.withValues(
-                  alpha: 0.7,
-                ),
-              ),
-              fillColor: theme.scaffoldBackgroundColor,
-            ),
-          ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 40),
 
-          const LoginButtonWidget(),
+          Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                RegisterTextFieldWidget(
+                  controller: _nationalIdController,
+                  label: "National ID",
+                  hint: "e.g., 1234567890",
+                  icon: Icons.badge_outlined,
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    nationalIdValidatorProvider(value);
+                  },
+                ),
+                const SizedBox(height: 20),
+                RegisterTextFieldWidget(
+                  controller: _passwordController,
+                  label: "Password",
+                  hint: "Enter a secure password",
+                  icon: Icons.lock_outline,
+                  obscureText: !_isPasswordVisible,
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _isPasswordVisible
+                          ? Icons.visibility_off
+                          : Icons.visibility,
+                      color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _isPasswordVisible = !_isPasswordVisible;
+                      });
+                    },
+                  ),
+                  validator: (value) {
+                    passwordValidatorProvider(value);
+                  },
+                ),
+              ],
+            ),
+          ),
+
+          const SizedBox(height: 50),
+
+          LoginButtonWidget(onPressed: _submitForm),
+
           const SizedBox(height: 100),
+
           Container(
             padding: const EdgeInsets.symmetric(vertical: 12),
             decoration: BoxDecoration(
