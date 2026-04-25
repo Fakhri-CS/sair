@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sair_cpa/view/routes.dart';
+import 'package:sair_cpa/view_model/is_preview_mode_provider.dart';
 import 'package:sair_cpa/view/widgets/global_widgets/report_card/info_row_widget.dart';
 import 'package:sair_cpa/view/widgets/global_widgets/report_card/status_badge_widget.dart';
-import 'package:sair_cpa/view_model/is_preview_mode_provider.dart';
+import 'package:sair_cpa/model/report_model.dart';
+import 'package:sair_cpa/view_model/selected_report_provider.dart';
+import 'package:sair_cpa/core/extensions/enum_extensions.dart';
 
 class ReportCardWidget extends ConsumerWidget {
-  final String reportId;
-  final String status;
-  final String submittedDate;
-  final String location;
-  final String category;
+  final ReportModel report;
 
   const ReportCardWidget({
     super.key,
-    required this.reportId,
-    required this.status,
-    required this.submittedDate,
-    required this.location,
-    required this.category,
+    required this.report,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final submittedDate = "${report.createdAt.day}/${report.createdAt.month}/${report.createdAt.year}";
+    final location = report.address.isNotEmpty 
+        ? report.address 
+        : "${report.lat.toStringAsFixed(4)}, ${report.lng.toStringAsFixed(4)}";
 
     return Container(
       margin: const EdgeInsets.only(bottom: 16.0),
@@ -62,14 +61,14 @@ class ReportCardWidget extends ConsumerWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    reportId,
+                    report.id,
                     style: theme.textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
               ),
-              StatusBadgeWidget(currentStatus: status),
+              StatusBadgeWidget(currentStatus: report.status.value),
             ],
           ),
           const SizedBox(height: 20),
@@ -101,7 +100,7 @@ class ReportCardWidget extends ConsumerWidget {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Text(
-                  category,
+                  report.accidentType,
                   style: theme.textTheme.labelSmall?.copyWith(
                     color: Colors.grey.shade600,
                     fontWeight: FontWeight.w600,
@@ -110,6 +109,7 @@ class ReportCardWidget extends ConsumerWidget {
               ),
               InkWell(
                 onTap: () {
+                  ref.read(selectedReportProvider.notifier).state = report;
                   ref.read(isPreviewModeProvider.notifier).state = true;
                   Navigator.of(context).pushNamed(AppRoute.reportDetails.route);
                 },

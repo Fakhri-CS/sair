@@ -9,12 +9,23 @@ import 'package:sair_cpa/view/widgets/global_widgets/accident_type_card_widget.d
 import 'package:sair_cpa/view/widgets/global_widgets/evidence_card_widget.dart';
 import 'package:sair_cpa/view/widgets/global_widgets/license_plate_widgets/license_plate_card_widget.dart';
 
-class ReportDetailsScreen extends StatelessWidget {
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sair_cpa/view_model/selected_report_provider.dart';
+
+class ReportDetailsScreen extends ConsumerWidget {
   const ReportDetailsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final report = ref.watch(selectedReportProvider);
+
+    if (report == null) {
+      return Scaffold(
+        appBar: SairAppBar(title: "Report Details"),
+        body: const Center(child: Text("No report selected")),
+      );
+    }
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
@@ -27,32 +38,32 @@ class ReportDetailsScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: const SafeArea(
+      body: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ReportStatusCardWidget(),
-              SizedBox(height: 24),
-              IncidentInfoCardWidget(),
-              SizedBox(height: 24),
+              const ReportStatusCardWidget(),
+              const SizedBox(height: 24),
+              const IncidentInfoCardWidget(),
+              const SizedBox(height: 24),
               LocationPreviewCardWidget(
-                latitude: 'd',
-                longitude: 'd',
-                mapImageUrl: 'd',
+                latitude: report.lat.toString(),
+                longitude: report.lng.toString(),
+                mapImageUrl: '', // Can be generated later
               ),
-              SizedBox(height: 24),
-              AccidentTypeCardWidget(),
-              SizedBox(height: 24),
-              LicensePlateCardWidget(),
-              SizedBox(height: 24),
-              DescriptionCardWidget(),
-              SizedBox(height: 24),
-              SizedBox(height: 16),
-              EvidenceCardWidget(),
-              SizedBox(height: 16),
-              ReportProgressCardWidget(),
+              const SizedBox(height: 24),
+              const AccidentTypeCardWidget(),
+              const SizedBox(height: 24),
+              const LicensePlateCardWidget(),
+              const SizedBox(height: 24),
+              const DescriptionCardWidget(),
+              const SizedBox(height: 24),
+              const SizedBox(height: 16),
+              const EvidenceCardWidget(),
+              const SizedBox(height: 16),
+              const ReportProgressCardWidget(),
             ],
           ),
         ),

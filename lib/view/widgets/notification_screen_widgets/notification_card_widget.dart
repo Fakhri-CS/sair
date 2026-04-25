@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sair_cpa/model/notificatoin_model.dart';
+import 'package:sair_cpa/model/notification_model.dart';
 
 class NotificationCardWidget extends StatelessWidget {
   const NotificationCardWidget({super.key, required this.notification});

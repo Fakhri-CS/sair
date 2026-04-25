@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sair_cpa/view/widgets/global_widgets/report_card/report_card_widget.dart';
 import 'package:sair_cpa/view/widgets/home_screen_widgets/dashboard_title_widget.dart';
+import 'package:sair_cpa/view_model/reports_provider.dart';
 import 'package:sair_cpa/view/widgets/home_screen_widgets/incident_cta_widget.dart';
 import 'package:sair_cpa/view/widgets/home_screen_widgets/safety_banner_widget.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final reportsState = ref.watch(reportsProvider);
+
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -25,12 +29,21 @@ class HomeScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
 
-          const ReportCardWidget(
-            reportId: "SR-99281",
-            status: "approved",
-            submittedDate: "24 Oct 2023",
-            location: "Al-Olaya, Riyadh",
-            category: "Road Maintenance",
+          reportsState.when(
+            data: (reports) {
+              if (reports.isEmpty) {
+                return const Center(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 20.0),
+                    child: Text("No recent activity found."),
+                  ),
+                );
+              }
+              // Show only the most recent report on Home
+              return ReportCardWidget(report: reports.first);
+            },
+            loading: () => const Center(child: CircularProgressIndicator()),
+            error: (error, _) => Text("Could not load recent activity: $error"),
           ),
           const SizedBox(height: 24),
 

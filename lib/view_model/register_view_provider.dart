@@ -1,27 +1,26 @@
+import 'dart:async';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sair_cpa/service/auth_service.dart';
+import 'package:sair_cpa/model/user_model.dart';
 
-// import 'dart:async';
-// import 'package:flutter_riverpod/flutter_riverpod.dart';
-// // Import your model and repository
+class RegisterViewModel extends AsyncNotifier<UserModel?> {
+  
+  @override
+  FutureOr<UserModel?> build() {
+    return null;
+  }
 
-// class RegisterViewModel extends AutoDisposeAsyncNotifier<void> {
-//   final AuthRepository _repository = AuthRepository(); // Ideally injected via another provider
+  Future<void> register(Map<String, dynamic> request) async {
+    state = const AsyncLoading();
 
-//   @override
-//   FutureOr<void> build() {
-//     // Initial state is just 'data' (not doing anything yet)
-//   }
+    final authService = ref.read(authServiceProvider);
+    
+    state = await AsyncValue.guard(() async {
+      return await authService.register(request);
+    });
+  }
+}
 
-//   Future<void> register(RegisterRequest request) async {
-
-//     state = const AsyncLoading();
-
-//     // 2. Wrap the repository call in a guard to catch errors securely
-//     state = await AsyncValue.guard(() async {
-//       await _repository.registerCitizen(request);
-//     });
-//   }
-// }
-
-// final registerViewModelProvider = AsyncNotifierProvider.autoDispose<RegisterViewModel, void>(
-//   RegisterViewModel.new,
-// );
+final registerViewModelProvider = AsyncNotifierProvider.autoDispose<RegisterViewModel, UserModel?>(
+  RegisterViewModel.new,
+);

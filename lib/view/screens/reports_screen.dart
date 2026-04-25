@@ -1,65 +1,62 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sair_cpa/view/widgets/global_widgets/report_card/report_card_widget.dart';
 import 'package:sair_cpa/view/widgets/reports_screen_widgets/header_section_widget.dart';
 import 'package:sair_cpa/view/widgets/reports_screen_widgets/need_help_card_widget.dart';
+import 'package:sair_cpa/view_model/reports_provider.dart';
+import 'package:sair_cpa/core/extensions/enum_extensions.dart';
 
-class ReportsScreen extends StatelessWidget {
+class ReportsScreen extends ConsumerWidget {
   const ReportsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final List<Map<String, String>> activeReports = [
-      {
-        "id": "SR-99281",
-        "status": "Approved",
-        "date": "24 Oct 2023",
-        "location": "Al-Olaya, Riyadh",
-        "category": "Road Maintenance",
-      },
-      {
-        "id": "SR-98102",
-        "status": "Pending",
-        "date": "12 Nov 2023",
-        "location": "King Fahd District, Jeddah",
-        "category": "Waste Management",
-      },
-      {
-        "id": "SR-97554",
-        "status": "Rejected",
-        "date": "05 Dec 2023",
-        "location": "Al-Hamra, Dammam",
-        "category": "Street Lighting",
-      },
-      {
-        "id": "SR-96221",
-        "status": "Under Review",
-        "date": "18 Dec 2023",
-        "location": "Diplomatic Quarter, Riyadh",
-        "category": "Public Safety",
-      },
-    ];
-    return ListView(
-      children: [
-        HeaderSectionWidget(reportCount: activeReports.length),
-        const SizedBox(height: 24),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final reportsState = ref.watch(reportsProvider);
 
-        ...activeReports.map(
-          (report) => Padding(
-            padding: const EdgeInsets.only(bottom: 16.0),
-            child: ReportCardWidget(
-              reportId: report["id"]!,
-              status: report["status"]!,
-              submittedDate: report["date"]!,
-              location: report["location"]!,
-              category: report["category"]!,
-            ),
-          ),
+    return reportsState.when(
+      data: (reports) => RefreshIndicator(
+        onRefresh: () => ref.read(reportsProvider.notifier).refresh(),
+        child: ListView(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          children: [
+            const SizedBox(height: 20),
+            HeaderSectionWidget(reportCount: reports.length),
+            const SizedBox(height: 24),
+            if (reports.isEmpty)
+              const Center(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 40.0),
+                  child: Text("No reports found."),
+                ),
+              )
+            else
+              ...reports.map(
+                (report) => ReportCardWidget(report: report),
+              ),
+            const SizedBox(height: 8),
+            const NeedHelpCardWidget(),
+            const SizedBox(height: 32),
+          ],
         ),
-
-        const SizedBox(height: 8),
-        const NeedHelpCardWidget(),
-        const SizedBox(height: 32),
-      ],
+      ),
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (error, stack) => Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("Error: $error"),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () => ref.read(reportsProvider.notifier).refresh(),
+              child: const Text("Retry"),
+            ),
+          ],
+        ),
+      ),
     );
+  }
+
+  String _formatDate(DateTime date) {
+    return "${date.day}/${date.month}/${date.year}";
   }
 }

@@ -1,3 +1,3 @@
 import 'package:flutter_riverpod/legacy.dart';
 
-final accidentTypeProvider = StateProvider.autoDispose<String>((_) => "Rear-end");
+final accidentTypeProvider = StateProvider<String>((ref) => "Rear-end");
