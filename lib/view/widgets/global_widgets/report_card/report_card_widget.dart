@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 import 'package:sair_cpa/view/routes.dart';
 import 'package:sair_cpa/view/widgets/global_widgets/report_card/info_row_widget.dart';
 import 'package:sair_cpa/view/widgets/global_widgets/report_card/status_badge_widget.dart';
@@ -24,6 +25,7 @@ class ReportCardWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final l10n = S.of(context); // Initialize localization
 
     return Container(
       margin: const EdgeInsets.only(bottom: 16.0),
@@ -53,7 +55,7 @@ class ReportCardWidget extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "REPORT ID",
+                    l10n.reportIdLabel, // Localized
                     style: theme.textTheme.labelSmall?.copyWith(
                       color: Colors.grey.shade500,
                       letterSpacing: 0.5,
@@ -76,14 +78,14 @@ class ReportCardWidget extends ConsumerWidget {
 
           InfoRowWidget(
             icon: Icons.calendar_today_outlined,
-            label: "SUBMITTED ON",
+            label: l10n.submittedOnLabel, // Localized
             value: submittedDate,
           ),
           const SizedBox(height: 16),
 
           InfoRowWidget(
             icon: Icons.location_on_outlined,
-            label: "LOCATION",
+            label: l10n.locationLabel, // Localized
             value: location,
           ),
           const SizedBox(height: 20),
@@ -123,7 +125,7 @@ class ReportCardWidget extends ConsumerWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        "View Details",
+                        l10n.viewDetails, // Localized
                         style: theme.textTheme.bodyMedium?.copyWith(
                           color: theme.primaryColor,
                           fontWeight: FontWeight.bold,

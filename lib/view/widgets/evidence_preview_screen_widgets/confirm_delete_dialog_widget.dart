@@ -2,20 +2,25 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 import 'package:sair_cpa/view_model/evidence_photos_provider.dart';
 
 class ConfirmDeleteDialogWidget extends ConsumerWidget {
   const ConfirmDeleteDialogWidget({super.key, required this.image});
+  
   final File image;
+  
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final l10n = S.of(context); // Initialize localization
+
     return AlertDialog(
       backgroundColor: theme.colorScheme.surface,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      title: Text("Remove Photo?", style: theme.textTheme.titleMedium),
+      title: Text(l10n.removePhotoTitle, style: theme.textTheme.titleMedium), // Localized
       content: Text(
-        "Are you sure you want to delete this evidence?",
+        l10n.removePhotoContent, // Localized
         style: theme.textTheme.bodyMedium,
       ),
       actions: [
@@ -26,7 +31,7 @@ class ConfirmDeleteDialogWidget extends ConsumerWidget {
               style: TextButton.styleFrom(
                 foregroundColor: theme.textTheme.bodyMedium?.color,
               ),
-              child: const Text("Cancel"),
+              child: Text(l10n.cancelButton), // Localized
             ),
             Expanded(
               child: ElevatedButton(
@@ -40,7 +45,7 @@ class ConfirmDeleteDialogWidget extends ConsumerWidget {
                   backgroundColor: theme.colorScheme.error,
                   foregroundColor: theme.colorScheme.surface,
                 ),
-                child: const Text("Delete"),
+                child: Text(l10n.deleteButton), // Localized
               ),
             ),
           ],

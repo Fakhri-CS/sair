@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 import 'package:sair_cpa/view/widgets/global_widgets/sair_app_bar.dart';
 import 'package:sair_cpa/view/widgets/global_widgets/accident_type_card_widget.dart';
 import 'package:sair_cpa/view/widgets/report_form_screen_widgets/bottom_action_widget.dart';
@@ -15,11 +16,12 @@ class ReportFormScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = S.of(context); // Initialize localization
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
       appBar: SairAppBar(
-        title: "Accident Report",
+        title: l10n.accidentReportTitle, // Localized string
         actions: [
           IconButton(
             onPressed: () => Navigator.of(context).pop(),

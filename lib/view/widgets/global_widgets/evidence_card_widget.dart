@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 import 'package:sair_cpa/view/routes.dart';
 import 'package:sair_cpa/view_model/evidence_photos_provider.dart';
 
 class EvidenceCardWidget extends ConsumerWidget {
   const EvidenceCardWidget({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final l10n = S.of(context); // Initialize localization
     final evidencePhotos = ref.watch(evidencePhotosProvider);
+
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -21,7 +25,7 @@ class EvidenceCardWidget extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Evidence Captured",
+                    l10n.evidenceCapturedTitle, // Localized
                     style: theme.textTheme.bodyMedium?.copyWith(
                       color: theme.primaryColor,
                       fontWeight: FontWeight.w600,
@@ -29,7 +33,7 @@ class EvidenceCardWidget extends ConsumerWidget {
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    "${evidencePhotos.length} photos attached",
+                    l10n.photosCountLabel(evidencePhotos.length), // Localized Plural
                     style: theme.textTheme.labelSmall?.copyWith(
                       fontWeight: FontWeight.normal,
                     ),
@@ -50,7 +54,7 @@ class EvidenceCardWidget extends ConsumerWidget {
                 minimumSize: Size.zero,
                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,
               ),
-              child: const Text("Preview"),
+              child: Text(l10n.previewButton), // Localized
             ),
           ],
         ),

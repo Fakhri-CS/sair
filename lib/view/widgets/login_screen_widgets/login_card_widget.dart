@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sair_cpa/generated/l10n.dart';
 import 'package:sair_cpa/view/routes.dart';
 import 'package:sair_cpa/view/widgets/global_widgets/sair_logo_widget.dart';
 import 'package:sair_cpa/view/widgets/global_widgets/text_field_widget.dart';
@@ -44,6 +45,7 @@ class _LoginCardWidgetState extends ConsumerState<LoginCardWidget> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = S.of(context)!; // Initialized localization variable
 
     return Container(
       width: double.infinity,
@@ -66,13 +68,13 @@ class _LoginCardWidgetState extends ConsumerState<LoginCardWidget> {
           const SizedBox(height: 8),
 
           Text(
-            "Welcome Back",
+            l10n.welcomeBack, // Localized
             style: theme.textTheme.headlineMedium?.copyWith(fontSize: 22),
           ),
           const SizedBox(height: 8),
 
           Text(
-            "Secure access to the unified\ngovernment portal",
+            l10n.secureAccessSubtitle, // Localized
             textAlign: TextAlign.center,
             style: theme.textTheme.bodyMedium?.copyWith(height: 1.4),
           ),
@@ -84,8 +86,8 @@ class _LoginCardWidgetState extends ConsumerState<LoginCardWidget> {
               children: [
                 RegisterTextFieldWidget(
                   controller: _nationalIdController,
-                  label: "National ID",
-                  hint: "e.g., 1234567890",
+                  label: l10n.nationalIdLabel, // Localized
+                  hint: l10n.nationalIdHint, // Localized
                   icon: Icons.badge_outlined,
                   keyboardType: TextInputType.number,
                   validator: (value) {
@@ -95,8 +97,8 @@ class _LoginCardWidgetState extends ConsumerState<LoginCardWidget> {
                 const SizedBox(height: 20),
                 RegisterTextFieldWidget(
                   controller: _passwordController,
-                  label: "Password",
-                  hint: "Enter a secure password",
+                  label: l10n.passwordLabel, // Localized
+                  hint: l10n.passwordHint, // Localized
                   icon: Icons.lock_outline,
                   obscureText: !_isPasswordVisible,
                   suffixIcon: IconButton(
@@ -142,7 +144,7 @@ class _LoginCardWidgetState extends ConsumerState<LoginCardWidget> {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  "100% SECURE ENCRYPTION",
+                  l10n.secureEncryptionText, // Localized
                   style: theme.textTheme.labelSmall?.copyWith(
                     color: theme.primaryColor.withValues(alpha: 0.8),
                     letterSpacing: 0.5,

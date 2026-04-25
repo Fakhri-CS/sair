@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 import 'package:sair_cpa/view_model/is_preview_mode_provider.dart';
 
 class DescriptionCardWidget extends ConsumerWidget {
@@ -8,7 +9,9 @@ class DescriptionCardWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final l10n = S.of(context); // Initialize localization
     final isPreviewMode = ref.watch(isPreviewModeProvider);
+
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -24,7 +27,7 @@ class DescriptionCardWidget extends ConsumerWidget {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  "Description",
+                  l10n.descriptionTitle, // Localized
                   style: theme.textTheme.titleMedium?.copyWith(fontSize: 15),
                 ),
               ],
@@ -34,8 +37,8 @@ class DescriptionCardWidget extends ConsumerWidget {
             TextField(
               enabled: !isPreviewMode,
               maxLines: 4,
-              decoration: const InputDecoration(
-                hintText: "Add any additional details here...",
+              decoration: InputDecoration( // Removed const
+                hintText: l10n.descriptionHint, // Localized
                 alignLabelWithHint: true,
               ),
             ),

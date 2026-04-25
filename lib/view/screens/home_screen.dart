@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 import 'package:sair_cpa/view/widgets/global_widgets/report_card/report_card_widget.dart';
 import 'package:sair_cpa/view/widgets/home_screen_widgets/dashboard_title_widget.dart';
 import 'package:sair_cpa/view/widgets/home_screen_widgets/incident_cta_widget.dart';
@@ -9,6 +10,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = S.of(context); // Initialize localization
+
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -20,17 +23,19 @@ class HomeScreen extends StatelessWidget {
           const SizedBox(height: 24),
 
           Text(
-            "Recent Activity",
+            l10n.recentActivityTitle, // Localized string
             style: Theme.of(context).textTheme.titleMedium,
           ),
           const SizedBox(height: 16),
 
-          const ReportCardWidget(
-            reportId: "SR-99281",
-            status: "approved",
-            submittedDate: "24 Oct 2023",
-            location: "Al-Olaya, Riyadh",
-            category: "Road Maintenance",
+          // Note: Mock data localized for prototyping. 
+          // Replace with real data from your Riverpod state later.
+          ReportCardWidget(
+            reportId: l10n.mockReportId,
+            status: l10n.mockStatusApproved,
+            submittedDate: l10n.mockDate,
+            location: l10n.mockLocation,
+            category: l10n.mockCategory,
           ),
           const SizedBox(height: 24),
 

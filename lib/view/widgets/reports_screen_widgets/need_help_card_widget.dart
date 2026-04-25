@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 import 'package:sair_cpa/view/routes.dart';
 import 'package:sair_cpa/view_model/is_preview_mode_provider.dart';
 
@@ -9,6 +10,8 @@ class NeedHelpCardWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final l10n = S.of(context); // Initialize localization
+
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(24.0),
@@ -23,7 +26,7 @@ class NeedHelpCardWidget extends ConsumerWidget {
       child: Column(
         children: [
           Text(
-            "Need help?",
+            l10n.needHelpTitle, // Localized
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
@@ -32,7 +35,7 @@ class NeedHelpCardWidget extends ConsumerWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            "Submit a new inquiry or report an issue to your local\nmunicipality.",
+            l10n.needHelpSubtitle, // Localized
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 12,
@@ -55,9 +58,9 @@ class NeedHelpCardWidget extends ConsumerWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
             ),
-            child: const Text(
-              "Submit New Report",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+            child: Text(
+              l10n.submitNewReportBtn, // Localized
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
             ),
           ),
         ],

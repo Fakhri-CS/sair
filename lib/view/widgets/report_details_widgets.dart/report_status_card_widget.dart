@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 
 class ReportStatusCardWidget extends StatelessWidget {
   const ReportStatusCardWidget({super.key});
@@ -6,6 +7,7 @@ class ReportStatusCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = S.of(context); // Initialize localization
 
     return Container(
       width: double.infinity,
@@ -29,7 +31,7 @@ class ReportStatusCardWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Current Status",
+                l10n.currentStatusLabel, // Localized string
                 style: theme.textTheme.labelSmall?.copyWith(
                   color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                   fontWeight: FontWeight.w600,
@@ -37,7 +39,7 @@ class ReportStatusCardWidget extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                "Report Approved",
+                l10n.reportApprovedStatus, // Localized string
                 style: theme.textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: theme.colorScheme.onSurface,
@@ -46,7 +48,7 @@ class ReportStatusCardWidget extends StatelessWidget {
             ],
           ),
           Text(
-            "Approved",
+            l10n.statusApprovedShort, // Localized string
             style: theme.textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.bold,
               color: theme.colorScheme.onSurface,

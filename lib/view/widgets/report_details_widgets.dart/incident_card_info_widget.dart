@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 import 'package:sair_cpa/view/widgets/report_details_widgets.dart/card_info_item_widget.dart';
 
 class IncidentInfoCardWidget extends StatelessWidget {
@@ -7,7 +8,7 @@ class IncidentInfoCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
+    final l10n = S.of(context); // Initialize localization
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(20.0),
@@ -34,7 +35,7 @@ class IncidentInfoCardWidget extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               Text(
-                "Incident Information",
+                l10n.incidentInfoTitle,
                 style: theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: theme.colorScheme.onSurface,
@@ -44,19 +45,19 @@ class IncidentInfoCardWidget extends StatelessWidget {
           ),
           const SizedBox(height: 24),
 
-          const Row(
+          Row(
             children: [
               Expanded(
                 child: CardInfoItemWidget(
                   icon: Icons.calendar_today_outlined,
-                  label: "DATE",
+                  label: l10n.dateLabel,
                   value: "Oct 24, 2023",
                 ),
               ),
               Expanded(
                 child: CardInfoItemWidget(
                   icon: Icons.access_time_outlined,
-                  label: "TIME",
+                  label: l10n.timeLabel,
                   value: "10:45 AM",
                 ),
               ),
@@ -70,9 +71,9 @@ class IncidentInfoCardWidget extends StatelessWidget {
                 theme.dividerColor.withValues(alpha: 0.5),
             height: 32,
           ),
-          const CardInfoItemWidget(
+          CardInfoItemWidget(
             icon: Icons.location_on_outlined,
-            label: "LOCATION",
+            label: l10n.locationLabelCap,
             value: "Sheikh Zayed Road, Near Exit 25",
           ),
         ],

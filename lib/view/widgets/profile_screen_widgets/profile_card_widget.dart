@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 
 class ProfileCardWidget extends StatelessWidget {
   const ProfileCardWidget({super.key});
@@ -6,6 +7,8 @@ class ProfileCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = S.of(context); // Initialize localization
+
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(vertical: 32.0, horizontal: 16.0),
@@ -54,7 +57,7 @@ class ProfileCardWidget extends StatelessWidget {
           const SizedBox(height: 16),
 
           Text(
-            "Fakhri",
+            "Fakhri", // Tip: Replace with dynamic data from Auth Provider later
             style: theme.textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.bold,
             ),
@@ -71,7 +74,7 @@ class ProfileCardWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
             ),
             child: Text(
-              "Verified Citizen",
+              l10n.verifiedCitizenStatus, // Localized
               style: theme.textTheme.labelSmall?.copyWith(
                 color: theme.primaryColor,
                 fontWeight: FontWeight.bold,
