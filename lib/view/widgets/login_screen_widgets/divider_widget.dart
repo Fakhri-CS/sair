@@ -14,7 +14,7 @@ class DividerWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Text(
-            "OR",
+            "Don't have account?",
             style: theme.textTheme.labelSmall?.copyWith(
               fontSize: 12,
               fontWeight: FontWeight.bold,

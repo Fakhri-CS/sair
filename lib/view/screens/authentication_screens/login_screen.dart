@@ -24,8 +24,6 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 30),
               const DividerWidget(),
               const SizedBox(height: 30),
-              const SanadLoginButtonWidget(),
-              const SizedBox(height: 30),
               const FooterLinksWidget(),
               const SizedBox(height: 40),
               Row(
