@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 import 'package:sair_cpa/view/routes.dart';
 import 'package:sair_cpa/view/widgets/profile_screen_widgets/settings_tile_widget.dart';
 
@@ -8,6 +9,7 @@ class SettingsSectionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = S.of(context); // Initialize localization
 
     return Container(
       decoration: BoxDecoration(
@@ -21,8 +23,8 @@ class SettingsSectionWidget extends StatelessWidget {
         children: [
           SettingsTileWidget(
             icon: Icons.language,
-            title: "Language",
-            subtitle: "English (US)",
+            title: l10n.settingsLanguage, // Localized
+            subtitle: l10n.settingsLanguageSubtitle, // Localized
             onTap: () =>
                 Navigator.of(context).pushNamed(AppRoute.languageScreen.route),
           ),
@@ -30,8 +32,8 @@ class SettingsSectionWidget extends StatelessWidget {
 
           SettingsTileWidget(
             icon: Icons.security_outlined,
-            title: "Security",
-            subtitle: "2FA Enabled",
+            title: l10n.settingsSecurity, // Localized
+            subtitle: l10n.settingsSecuritySubtitle, // Localized
             onTap: () =>
                 Navigator.of(context).pushNamed(AppRoute.securityScreen.route),
           ),
@@ -39,8 +41,8 @@ class SettingsSectionWidget extends StatelessWidget {
 
           SettingsTileWidget(
             icon: Icons.notifications_none_outlined,
-            title: "Notifications",
-            subtitle: "All enabled",
+            title: l10n.settingsNotifications, // Localized
+            subtitle: l10n.settingsNotificationsSubtitle, // Localized
             onTap: () => Navigator.of(
               context,
             ).pushNamed(AppRoute.notificationsScreen.route),
@@ -49,12 +51,11 @@ class SettingsSectionWidget extends StatelessWidget {
 
           SettingsTileWidget(
             icon: Icons.logout,
-            title: "Logout",
-            subtitle: "End current session",
+            title: l10n.settingsLogout, // Localized
+            subtitle: l10n.settingsLogoutSubtitle, // Localized
             onTap: () {
               Navigator.pushReplacementNamed(context, AppRoute.login.route);
             },
-
             isDestructive: true,
           ),
         ],

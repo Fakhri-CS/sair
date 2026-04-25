@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 import 'package:sair_cpa/view/app_theme.dart';
 
 class SafetyBannerWidget extends StatelessWidget {
@@ -7,6 +8,8 @@ class SafetyBannerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = S.of(context); // Initialize localization
+
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -34,7 +37,7 @@ class SafetyBannerWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Safety First",
+                  l10n.safetyFirstTitle, // Localized
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontSize: 13,
                     color: theme.primaryColor,
@@ -42,7 +45,7 @@ class SafetyBannerWidget extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  "Before reporting, move your vehicle to the nearest safe location to avoid obstructing traffic.",
+                  l10n.safetyFirstDescription, // Localized
                   style: theme.textTheme.bodyMedium!.copyWith(
                     fontSize: 12,
                     color: theme.primaryColor.withValues(alpha: 0.8),

@@ -1,0 +1,491 @@
+{
+  "@@locale": "en",
+  "welcomeBack": "Welcome Back",
+  "@welcomeBack": {
+    "description": "Greeting text on the login screen"
+  },
+  "secureAccessSubtitle": "Secure access to the unified\ngovernment portal",
+  "@secureAccessSubtitle": {
+    "description": "Subtitle text under the greeting on the login screen"
+  },
+  "nationalIdLabel": "National ID",
+  "@nationalIdLabel": {
+    "description": "Label for the National ID text field"
+  },
+  "nationalIdHint": "e.g., 1234567890",
+  "@nationalIdHint": {
+    "description": "Hint text for the National ID text field"
+  },
+  "passwordLabel": "Password",
+  "@passwordLabel": {
+    "description": "Label for the password text field"
+  },
+  "passwordHint": "Enter a secure password",
+  "@passwordHint": {
+    "description": "Hint text for the password text field"
+  },
+  "secureEncryptionText": "100% SECURE ENCRYPTION",
+  "@secureEncryptionText": {
+    "description": "Security assurance text at the bottom of the login screen"
+  },
+  "loginButton": "Login",
+  "@loginButton": {
+    "description": "Text for the login button"
+  },
+  "liveSystem": "LIVE SYSTEM",
+  "@liveSystem": {
+    "description": "Indicator text for live system status"
+  },
+  "switchLanguageText": "عربي",
+  "@switchLanguageText": {
+    "description": "Text shown on the button to switch to the Arabic language"
+  },
+  "registerNow": "Register Now",
+  "@registerNow": {
+    "description": "Text for the registration link in the footer"
+  },
+  "dontHaveAccount": "Don't have account?",
+  "@dontHaveAccount": {
+    "description": "Text shown in the divider before the registration link"
+  },
+  "contactSupport": "Having trouble? Contact Support at 19900",
+  "@contactSupport": {
+    "description": "Support contact text at the bottom of the login screen"
+  },
+  "copyrightText": "© 2024 SAIR Digital Governance. All Rights Reserved.",
+  "@copyrightText": {
+    "description": "Copyright text at the bottom of the login screen"
+  },
+  "registerSuccessMessage": "Registration Successful!",
+  "registerAppBarTitle": "Register",
+  "createAccountTitle": "Create Account",
+  "createAccountSubtitle": "Please fill in your details to register as a citizen.",
+  "fullNameLabel": "Full Name",
+  "fullNameHint": "e.g., Postman Citizen",
+  "errorEmptyFullName": "Please enter your full name",
+  "emailLabel": "Email Address",
+  "emailHint": "e.g., citizen@example.com",
+  "errorEmptyEmail": "Please enter your email",
+  "errorInvalidEmail": "Please enter a valid email address",
+  "phoneLabel": "Phone Number",
+  "phoneHint": "e.g., 0790000000",
+  "errorEmptyPhone": "Please enter your phone number",
+  "registerButton": "Register",
+  "alreadyHaveAccount": "Already have an account? ",
+  "logInLink": "Log in",
+  "greetingHi": "Hi, {name}",
+  "@greetingHi": {
+    "description": "Greeting in the app bar on the main screen",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Fakhri"
+      }
+    }
+  },
+  "reportsTitle": "Reports",
+  "@reportsTitle": {
+    "description": "App bar title for the reports screen"
+  },
+  "profileTitle": "Profile",
+  "@profileTitle": {
+    "description": "App bar title and bottom nav label for the profile screen"
+  },
+  "homeNav": "Home",
+  "@homeNav": {
+    "description": "Bottom nav label for the home screen"
+  },
+  "myReportsNav": "My Reports",
+  "@myReportsNav": {
+    "description": "Bottom nav label for the reports screen"
+  },
+  "recentActivityTitle": "Recent Activity",
+  "@recentActivityTitle": {
+    "description": "Title for the recent activity section on the home screen"
+  },
+  "mockReportId": "SR-99281",
+  "@mockReportId": {
+    "description": "Mock data: Report ID"
+  },
+  "mockStatusApproved": "approved",
+  "@mockStatusApproved": {
+    "description": "Mock data: Approved status"
+  },
+  "mockDate": "24 Oct 2023",
+  "@mockDate": {
+    "description": "Mock data: Submission date"
+  },
+  "mockLocation": "Al-Olaya, Riyadh",
+  "@mockLocation": {
+    "description": "Mock data: Location"
+  },
+  "mockCategory": "Road Maintenance",
+  "@mockCategory": {
+    "description": "Mock data: Report category"
+  },
+  "evidencePreviewTitle": "Evidence Preview",
+  "@evidencePreviewTitle": {
+    "description": "App bar title for the evidence preview screen"
+  },
+  "accidentLocationTitle": "Accident Location",
+  "@accidentLocationTitle": {
+    "description": "App bar title for the screen where users pick the accident location on a map"
+  },
+  "notificationsTitle": "Notifications",
+  "@notificationsTitle": {
+    "description": "App bar title for the notifications screen"
+  },
+  "failedToLoadNotifications": "Failed to load notifications",
+  "@failedToLoadNotifications": {
+    "description": "Error message shown when notifications fail to load"
+  },
+  "tryAgainBtn": "Try Again",
+  "@tryAgainBtn": {
+    "description": "Button text to retry loading data"
+  },
+  "settingsHeader": "SETTINGS",
+  "@settingsHeader": {
+    "description": "Header text for the settings section on the profile screen"
+  },
+  "reportDetailsTitle": "Report Details",
+  "@reportDetailsTitle": {
+    "description": "App bar title for the report details screen"
+  },
+  "accidentReportTitle": "Accident Report",
+  "@accidentReportTitle": {
+    "description": "App bar title for the accident report form screen"
+  },
+  "removePhotoTitle": "Remove Photo?",
+  "@removePhotoTitle": {
+    "description": "Title for the delete evidence confirmation dialog"
+  },
+  "removePhotoContent": "Are you sure you want to delete this evidence?",
+  "@removePhotoContent": {
+    "description": "Content text for the delete evidence confirmation dialog"
+  },
+  "cancelButton": "Cancel",
+  "@cancelButton": {
+    "description": "Generic cancel button text"
+  },
+  "deleteButton": "Delete",
+  "@deleteButton": {
+    "description": "Generic delete button text"
+  },
+  "noEvidenceCaptured": "No evidence captured yet.",
+  "@noEvidenceCaptured": {
+    "description": "Empty state text when no photos have been added"
+  },
+  "licensePlateTitle": "License Plate",
+  "@licensePlateTitle": {
+    "description": "Title for the license plate input section"
+  },
+  "addPlateButton": "Add Plate",
+  "@addPlateButton": {
+    "description": "Button text to add another license plate input field"
+  },
+  "plateNumbersHint": "Plate numbers",
+  "@plateNumbersHint": {
+    "description": "Info text shown in preview mode for license plates"
+  },
+  "enterPlateExactlyHint": "Enter characters and numbers exactly as on plate",
+  "@enterPlateExactlyHint": {
+    "description": "Info text guiding the user on how to enter the license plate"
+  },
+  "reportIdLabel": "REPORT ID",
+  "@reportIdLabel": {
+    "description": "Label for the report identifier"
+  },
+  "submittedOnLabel": "SUBMITTED ON",
+  "@submittedOnLabel": {
+    "description": "Label for the submission date"
+  },
+  "locationLabel": "LOCATION",
+  "@locationLabel": {
+    "description": "Label for the incident location"
+  },
+  "viewDetails": "View Details",
+  "@viewDetails": {
+    "description": "Button text to navigate to report details"
+  },
+  "statusApproved": "Approved",
+  "@statusApproved": {
+    "description": "Status badge text for an approved report"
+  },
+  "statusPending": "Pending",
+  "@statusPending": {
+    "description": "Status badge text for a pending report"
+  },
+  "statusRejected": "Rejected",
+  "@statusRejected": {
+    "description": "Status badge text for a rejected report"
+  },
+  "statusUnderReview": "Under Review",
+  "@statusUnderReview": {
+    "description": "Status badge text for a report currently under review"
+  },
+  "accidentTypeTitle": "Accident Type",
+  "@accidentTypeTitle": {
+    "description": "Title for the accident type selection section"
+  },
+  "accidentTypeRearEnd": "Rear-end",
+  "@accidentTypeRearEnd": {
+    "description": "Accident type option: Rear-end collision"
+  },
+  "accidentTypeFrontal": "Frontal",
+  "@accidentTypeFrontal": {
+    "description": "Accident type option: Frontal collision"
+  },
+  "accidentTypeSideSwipe": "Side Swipe",
+  "@accidentTypeSideSwipe": {
+    "description": "Accident type option: Side swipe collision"
+  },
+  "accidentTypeOther": "Other",
+  "@accidentTypeOther": {
+    "description": "Accident type option: Other"
+  },
+  "descriptionTitle": "Description",
+  "@descriptionTitle": {
+    "description": "Title for the description/notes section"
+  },
+  "descriptionHint": "Add any additional details here...",
+  "@descriptionHint": {
+    "description": "Hint text for the description text field"
+  },
+  "evidenceCapturedTitle": "Evidence Captured",
+  "@evidenceCapturedTitle": {
+    "description": "Title for the evidence card"
+  },
+  "photosCountLabel": "{count, plural, =0{No photos attached} =1{1 photo attached} other{{count} photos attached}}",
+  "@photosCountLabel": {
+    "description": "A pluralized label for the number of evidence photos",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "previewButton": "Preview",
+  "@previewButton": {
+    "description": "Button text to preview captured photos"
+  },
+  "dashboardTitle": "Your Dashboard",
+  "@dashboardTitle": {
+    "description": "Main heading for the dashboard screen"
+  },
+  "dashboardSubtitle": "Everything looks secure today.",
+  "@dashboardSubtitle": {
+    "description": "Security status subtitle on the dashboard"
+  },
+  "incidentQuestion": "Had a minor incident?",
+  "@incidentQuestion": {
+    "description": "Heading for the incident report CTA"
+  },
+  "incidentSubtitle": "Quickly report and get back on your way.",
+  "@incidentSubtitle": {
+    "description": "Subtitle for the incident report CTA"
+  },
+  "reportMinorAccidentBtn": "Report Minor Accident",
+  "@reportMinorAccidentBtn": {
+    "description": "Primary button text to start the accident report"
+  },
+  "pressToReportHint": "Press Here To Report",
+  "@pressToReportHint": {
+    "description": "Secondary instruction text inside the CTA button"
+  },
+  "safetyFirstTitle": "Safety First",
+  "@safetyFirstTitle": {
+    "description": "Title for the safety banner on the home screen"
+  },
+  "safetyFirstDescription": "Before reporting, move your vehicle to the nearest safe location to avoid obstructing traffic.",
+  "@safetyFirstDescription": {
+    "description": "Safety advice instructions for the user"
+  },
+  "timeMinutesAgo": "{minutes}m ago",
+  "@timeMinutesAgo": {
+    "placeholders": {
+      "minutes": { "type": "int" }
+    }
+  },
+  "timeHoursAgo": "{hours}h ago",
+  "@timeHoursAgo": {
+    "placeholders": {
+      "hours": { "type": "int" }
+    }
+  },
+  "timeDaysAgo": "{days}d ago",
+  "@timeDaysAgo": {
+    "placeholders": {
+      "days": { "type": "int" }
+    }
+  },
+  "noNotificationsYet": "No notifications yet",
+  "@noNotificationsYet": {
+    "description": "Empty state text when the notification list is empty"
+  },
+  "appFooterText": "Sair App v{version} • {portalName}",
+  "@appFooterText": {
+    "description": "Footer text showing version and portal description",
+    "placeholders": {
+      "version": {
+        "type": "String",
+        "example": "2.4.0"
+      },
+      "portalName": {
+        "type": "String",
+        "example": "Government Services Portal"
+      }
+    }
+  },
+  "governmentServicesPortal": "Government Services Portal",
+  "verifiedCitizenStatus": "Verified Citizen",
+  "@verifiedCitizenStatus": {
+    "description": "Status label for a verified user in the profile card"
+  },
+  "settingsLanguage": "Language",
+  "@settingsLanguage": {
+    "description": "Title for language settings"
+  },
+  "settingsLanguageSubtitle": "English (US)",
+  "settingsSecurity": "Security",
+  "settingsSecuritySubtitle": "2FA Enabled",
+  "settingsNotifications": "Notifications",
+  "settingsNotificationsSubtitle": "All enabled",
+  "settingsLogout": "Logout",
+  "settingsLogoutSubtitle": "End current session",
+  "totalReportsLabel": "TOTAL REPORTS",
+  "@totalReportsLabel": {
+    "description": "Label for the total reports count card"
+  },
+  "accountStatusLabel": "ACCOUNT STATUS",
+  "@accountStatusLabel": {
+    "description": "Label for the account status card"
+  },
+  "accountStatusVerified": "VERIFIED",
+  "@accountStatusVerified": {
+    "description": "Value indicating a verified account status"
+  },
+  "incidentInfoTitle": "Incident Information",
+  "@incidentInfoTitle": {
+    "description": "Title for the incident details information card"
+  },
+  "dateLabel": "DATE",
+  "timeLabel": "TIME",
+  "locationLabelCap": "LOCATION",
+  "locationPreviewTitle": "Location Preview",
+  "@locationPreviewTitle": {
+    "description": "Title for the map preview section in report details"
+  },
+  "reportProgressTitle": "Report Progress",
+  "@reportProgressTitle": {
+    "description": "Title for the report status timeline card"
+  },
+  "progressApproved": "Report Approved",
+  "progressUnderReview": "Under Review",
+  "progressReceived": "Report Received",
+  "currentStatusLabel": "Current Status",
+  "@currentStatusLabel": {
+    "description": "Label for the current status section"
+  },
+  "reportApprovedStatus": "Report Approved",
+  "@reportApprovedStatus": {
+    "description": "Primary status text for an approved report"
+  },
+  "statusApprovedShort": "Approved",
+  "@statusApprovedShort": {
+    "description": "Short status indicator text"
+  },
+  "submitReport": "Submit Report",
+  "@submitReport": {
+    "description": "Text for the main action button to submit a report"
+  },
+  "takePicture": "Take Picture",
+  "@takePicture": {
+    "description": "Text for the camera button to capture evidence"
+  },
+  "locationNotChosen": "Location not chosen",
+  "@locationNotChosen": {
+    "description": "Text shown when no location has been selected yet"
+  },
+  "somethingWentWrong": "Something went wrong!",
+  "@somethingWentWrong": {
+    "description": "Generic error message for location fetching"
+  },
+  "getCurrentLocation": "Get Current Location",
+  "@getCurrentLocation": {
+    "description": "Button text to fetch user's GPS coordinates"
+  },
+  "selectOnMap": "Select on Map",
+  "@selectOnMap": {
+    "description": "Button text to open a map picker"
+  },
+  "reportDetailsSubtitle": "Please provide accurate info to ensure quick\nprocessing",
+  "@reportDetailsSubtitle": {
+    "description": "Instructional subtitle for the report form"
+  },
+  "trackInteractions": "Track Interactions",
+  "@trackInteractions": {
+    "description": "Header title for the report tracking screen"
+  },
+  "activeReportsCount": "{count, plural, =0{You have no active reports} =1{You have 1 active report} other{You have {count} active reports}}",
+  "@activeReportsCount": {
+    "description": "A pluralized label for the number of active reports",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "3"
+      }
+    }
+  },
+  "needHelpTitle": "Need help?",
+  "@needHelpTitle": {
+    "description": "Title for the support/inquiry card"
+  },
+  "needHelpSubtitle": "Submit a new inquiry or report an issue to your local\nmunicipality.",
+  "@needHelpSubtitle": {
+    "description": "Subtitle explaining how to get help from the municipality"
+  },
+  "submitNewReportBtn": "Submit New Report",
+  "@submitNewReportBtn": {
+    "description": "Button text to start a new support report"
+  },
+  "languageTitle": "Language",
+  "@languageTitle": {
+    "description": "Title for the language selection screen"
+  },
+  "preferencesLabel": "PREFERENCES",
+  "@preferencesLabel": {
+    "description": "Header for the preferences section"
+  },
+  "englishLabel": "English (US)",
+  "arabicLabel": "العربية",
+  "englishSubtitle": "English",
+  "arabicSubtitle": "Arabic",
+  "securityTitle": "Security",
+  "@securityTitle": {
+    "description": "Title for the security settings screen"
+  },
+  "accountProtectionLabel": "ACCOUNT PROTECTION",
+  "@accountProtectionLabel": {
+    "description": "Section header for security protection features"
+  },
+  "twoFactorAuth": "Two-Factor Auth (2FA)",
+  "@twoFactorAuth": {
+    "description": "Title for the 2FA toggle"
+  },
+  "twoFactorSubtitle": "Require code on new devices",
+  "@twoFactorSubtitle": {
+    "description": "Subtitle explaining what 2FA does"
+  },
+
+  "globalSettingsLabel": "GLOBAL SETTINGS",
+  "allowNotifications": "Allow Notifications",
+  "allowNotificationsSubtitle": "Enable all push notifications",
+  "alertsAndUpdatesLabel": "ALERTS & UPDATES",
+  "reportStatus": "Report Status",
+  "reportStatusSubtitle": "Get notified when report progress changes",
+  "emailAlerts": "Email Alerts",
+  "emailAlertsSubtitle": "Receive incident summaries via email",
+  "smsNotifications": "SMS Notifications",
+  "smsNotificationsSubtitle": "Critical updates sent to your phone"
+}

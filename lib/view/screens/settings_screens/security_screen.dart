@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 import 'package:sair_cpa/view/widgets/global_widgets/sair_app_bar.dart';
 import 'package:sair_cpa/view/widgets/security_widgets/security_toggle_tile_widget.dart';
 
@@ -21,11 +22,12 @@ class _SecurityScreenState extends State<SecurityScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = S.of(context); // Initialize localization
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
       appBar: SairAppBar(
-        title: "Security",
+        title: l10n.securityTitle, // Localized
         actions: [
           IconButton(
             onPressed: () => Navigator.of(context).pop(),
@@ -41,7 +43,7 @@ class _SecurityScreenState extends State<SecurityScreen> {
             Padding(
               padding: const EdgeInsets.only(left: 4.0, bottom: 12.0),
               child: Text(
-                "ACCOUNT PROTECTION",
+                l10n.accountProtectionLabel, // Localized
                 style: theme.textTheme.labelMedium?.copyWith(
                   color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                   letterSpacing: 1.2,
@@ -49,7 +51,6 @@ class _SecurityScreenState extends State<SecurityScreen> {
                 ),
               ),
             ),
-
             Container(
               decoration: BoxDecoration(
                 color: theme.colorScheme.surface,
@@ -62,12 +63,12 @@ class _SecurityScreenState extends State<SecurityScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   SecurityToggleTile(
-                    title: "Two-Factor Auth (2FA)",
-                    subtitle: "Require code on new devices",
+                    title: l10n.twoFactorAuth, // Localized
+                    subtitle: l10n.twoFactorSubtitle, // Localized
                     icon: Icons.verified_user_outlined,
                     value: _is2FAEnabled,
                     onChanged: _toggle2FA,
-                    isFirst: false,
+                    isFirst: false, // Changed based on your list logic if needed
                     isLast: false,
                   ),
                 ],

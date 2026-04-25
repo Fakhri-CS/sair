@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 
 class DividerWidget extends StatelessWidget {
   const DividerWidget({super.key});
@@ -6,6 +7,7 @@ class DividerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = S.of(context); // Initialize localization
 
     return Row(
       children: [
@@ -14,7 +16,7 @@ class DividerWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Text(
-            "Don't have account?",
+            l10n.dontHaveAccount, // Localized string
             style: theme.textTheme.labelSmall?.copyWith(
               fontSize: 12,
               fontWeight: FontWeight.bold,

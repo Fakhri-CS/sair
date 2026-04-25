@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sair_cpa/generated/l10n.dart';
+import 'package:sair_cpa/view_model/locale_provider.dart'; // Added localization import
 
-class TopBarWidget extends StatefulWidget {
+class TopBarWidget extends ConsumerWidget {
   const TopBarWidget({super.key});
 
   @override
-  State<TopBarWidget> createState() => _TopBarWidgetState();
-}
-
-class _TopBarWidgetState extends State<TopBarWidget> {
-  var _language = "English";
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final l10n = S.of(context);
+    final language = ref.watch(localeProvider);
+    final lang = language.languageCode;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -36,7 +36,7 @@ class _TopBarWidgetState extends State<TopBarWidget> {
               ),
               const SizedBox(width: 8),
               Text(
-                "LIVE SYSTEM",
+                l10n.liveSystem, // Localized
                 style: theme.textTheme.labelSmall?.copyWith(
                   fontSize: 10,
                   fontWeight: FontWeight.bold,
@@ -49,13 +49,12 @@ class _TopBarWidgetState extends State<TopBarWidget> {
         ),
         InkWell(
           onTap: () {
-            setState(() {
-              if (_language == 'عربي') {
-                _language = 'English';
-              } else {
-                _language = 'عربي';
-              }
-            });
+           if(lang == 'en') {
+            ref.read(localeProvider.notifier).state = const Locale('ar');
+           }
+           else {
+            ref.read(localeProvider.notifier).state = const Locale('en');
+           }
           },
           borderRadius: BorderRadius.circular(20),
           child: Container(
@@ -76,7 +75,7 @@ class _TopBarWidgetState extends State<TopBarWidget> {
                 Icon(Icons.translate, size: 16, color: theme.primaryColor),
                 const SizedBox(width: 8),
                 Text(
-                  _language,
+                  l10n.switchLanguageText,
                   style: theme.textTheme.labelSmall?.copyWith(
                     fontSize: 12,
                     fontWeight: FontWeight.bold,

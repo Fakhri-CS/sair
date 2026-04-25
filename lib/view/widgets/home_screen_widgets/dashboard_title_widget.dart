@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 import 'package:sair_cpa/view/app_theme.dart';
 
 class DashboardTitleWidget extends StatelessWidget {
@@ -7,16 +8,21 @@ class DashboardTitleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = S.of(context); // Initialize localization
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Your Dashboard", style: theme.textTheme.headlineMedium),
+            Text(
+              l10n.dashboardTitle, // Localized
+              style: theme.textTheme.headlineMedium,
+            ),
             const SizedBox(height: 4),
             Text(
-              "Everything looks secure today.",
+              l10n.dashboardSubtitle, // Localized
               style: theme.textTheme.bodyMedium,
             ),
           ],
