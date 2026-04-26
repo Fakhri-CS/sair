@@ -32,8 +32,11 @@ class SubmitReportViewModel extends AsyncNotifier<ReportModel?> {
       return;
     }
 
-    if (platesNumber.isEmpty) {
-      state = AsyncValue.error('Please add at least one license plate', StackTrace.current);
+    // Filter out empty plate numbers
+    final validPlates = platesNumber.where((p) => p.trim().isNotEmpty).toList();
+
+    if (validPlates.isEmpty) {
+      state = AsyncValue.error('Please add at least one valid license plate', StackTrace.current);
       return;
     }
 
@@ -48,9 +51,13 @@ class SubmitReportViewModel extends AsyncNotifier<ReportModel?> {
         lng: location.longitude,
         description: description,
         accidentType: accidentType,
-        platesNumber: platesNumber,
+        platesNumber: validPlates,
         photos: evidencePhotos,
       );
+
+      // Clear the form data upon successful submission
+      ref.read(descriptionProvider.notifier).clear();
+      ref.read(licensePlatesProvider.notifier).clear();
 
       // Refresh reports list
       ref.read(reportsProvider.notifier).refresh();

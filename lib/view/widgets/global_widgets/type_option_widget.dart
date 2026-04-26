@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sair_cpa/view_model/accident_type_provider.dart';
 import 'package:sair_cpa/view_model/is_preview_mode_provider.dart';
-
 import 'package:sair_cpa/view_model/selected_report_provider.dart';
 
 class TypeOptionWidget extends ConsumerWidget {
@@ -24,7 +23,7 @@ class TypeOptionWidget extends ConsumerWidget {
         onTap: isPreviewMode
             ? null
             : () {
-                ref.read(accidentTypeProvider.notifier).state = title;
+                ref.read(accidentTypeProvider.notifier).update(title);
               },
         borderRadius: BorderRadius.circular(12),
         child: Container(

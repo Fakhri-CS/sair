@@ -1,8 +1,11 @@
 // Global API Configuration Variables
 
-// NOTE: Use 10.0.2.2 to access your machine's localhost from an Android Emulator
-// const String kBaseUrl = "http://10.0.2.2:8080";
-const String kBaseUrl = "http://sair-cpa-api.duckdns.org";
+// FOR PHYSICAL DEVICE: Replace with your computer's local IP address (e.g., http://192.168.1.100:8080)
+// Make sure both your phone and computer are on the same WiFi network.
+const String kBaseUrl = "http://sair-cpa-api.duckdns.org"; 
+
+// const String kBaseUrl = "http://10.0.2.2:8080"; // For Android Emulator
+// const String kBaseUrl = "http://localhost:8080"; // For Web/Windows/Simulators
 
 // Auth Endpoints
 const String kRegisterEndpoint = "/auth/register";

@@ -26,12 +26,12 @@ class LicensePlatesNotifier extends Notifier<List<String>> {
     state = newList;
   }
   
-  void setList(List<String> list) {
-    state = list;
+  void clear() {
+    state = [];
   }
 }
 
 final licensePlatesProvider =
-    NotifierProvider.autoDispose<LicensePlatesNotifier, List<String>>(
+    NotifierProvider<LicensePlatesNotifier, List<String>>(
       LicensePlatesNotifier.new,
     );

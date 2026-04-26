@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sair_cpa/view_model/description_provider.dart';
 import 'package:sair_cpa/view_model/is_preview_mode_provider.dart';
-
 import 'package:sair_cpa/view_model/selected_report_provider.dart';
 
 class DescriptionCardWidget extends ConsumerStatefulWidget {
@@ -18,20 +17,7 @@ class _DescriptionCardWidgetState extends ConsumerState<DescriptionCardWidget> {
   @override
   void initState() {
     super.initState();
-    // Initialize controller with the current value in the provider
     _controller = TextEditingController(text: ref.read(descriptionProvider));
-  }
-
-  @override
-  void didUpdateWidget(DescriptionCardWidget oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    final isPreviewMode = ref.read(isPreviewModeProvider);
-    if (isPreviewMode) {
-      final report = ref.read(selectedReportProvider);
-      if (report != null) {
-        _controller.text = report.description;
-      }
-    }
   }
 
   @override
@@ -76,8 +62,7 @@ class _DescriptionCardWidgetState extends ConsumerState<DescriptionCardWidget> {
               enabled: !isPreviewMode,
               maxLines: 4,
               onChanged: (value) {
-                // Update the provider immediately when text changes
-                ref.read(descriptionProvider.notifier).state = value;
+                ref.read(descriptionProvider.notifier).update(value);
               },
               decoration: const InputDecoration(
                 hintText: "Add any additional details here...",

@@ -26,14 +26,14 @@ class ReportService {
       if (photos != null && photos.isNotEmpty) {
         // Prepare Multipart request
         final formDataMap = <String, dynamic>{
-          'lat': lat.toString(),
-          'lng': lng.toString(),
+          'lat': lat,
+          'lng': lng,
           'description': description,
           'accidentType': accidentType,
-          'platesNumber': platesNumber, 
+          'platesNumber': platesNumber,
         };
 
-        // Add photos - using 'photo' as per the system guide
+        // Add photos - Guide says 'photo' field (multiple supported)
         final multipartPhotos = <MultipartFile>[];
         for (final photo in photos) {
           multipartPhotos.add(
@@ -46,7 +46,7 @@ class ReportService {
         
         formDataMap['photo'] = multipartPhotos;
 
-        data = FormData.fromMap(formDataMap, ListFormat.multiCompatible);
+        data = FormData.fromMap(formDataMap);
       } else {
         // Regular JSON request
         data = {
@@ -84,7 +84,6 @@ class ReportService {
       if (from != null) queryParameters['from'] = from;
       if (to != null) queryParameters['to'] = to;
 
-      // Manual query param append as ApiService is basic
       String path = '$kReportsEndpoint/my';
       if (queryParameters.isNotEmpty) {
         final queryString = Uri(queryParameters: queryParameters).query;

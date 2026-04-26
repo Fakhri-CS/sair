@@ -3,12 +3,22 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sair_cpa/view/routes.dart';
 import 'package:sair_cpa/view_model/evidence_photos_provider.dart';
 
+import 'package:sair_cpa/view_model/is_preview_mode_provider.dart';
+import 'package:sair_cpa/view_model/selected_report_provider.dart';
+
 class EvidenceCardWidget extends ConsumerWidget {
   const EvidenceCardWidget({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final evidencePhotos = ref.watch(evidencePhotosProvider);
+    final isPreviewMode = ref.watch(isPreviewModeProvider);
+    final selectedReport = ref.watch(selectedReportProvider);
+
+    final photoCount = isPreviewMode && selectedReport != null
+        ? selectedReport.mediaUrls.length
+        : evidencePhotos.length;
+
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -29,7 +39,7 @@ class EvidenceCardWidget extends ConsumerWidget {
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    "${evidencePhotos.length} photos attached",
+                    "$photoCount photos attached",
                     style: theme.textTheme.labelSmall?.copyWith(
                       fontWeight: FontWeight.normal,
                     ),
