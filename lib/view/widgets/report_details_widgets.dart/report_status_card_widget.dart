@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,6 +15,7 @@ class ReportStatusCardWidget extends ConsumerWidget {
     final report = ref.watch(selectedReportProvider);
 
     if (report == null) return const SizedBox.shrink();
+    final l10n = S.of(context); // Initialize localization
 
     return Container(
       width: double.infinity,
@@ -37,7 +39,7 @@ class ReportStatusCardWidget extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Current Status",
+                l10n.currentStatusLabel, // Localized string
                 style: theme.textTheme.labelSmall?.copyWith(
                   color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                   fontWeight: FontWeight.w600,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sair_cpa/generated/l10n.dart';
 import 'package:sair_cpa/view/routes.dart';
 
 class LocationPreviewCardWidget extends ConsumerWidget {
@@ -39,10 +40,10 @@ class LocationPreviewCardWidget extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Padding(
+Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(
-              "Location Preview",
+              S.of(context).locationPreviewTitle, // Localized string
               style: theme.textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
                 color: theme.colorScheme.onSurface,

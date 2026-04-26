@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sair_cpa/view_model/description_provider.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 import 'package:sair_cpa/view_model/is_preview_mode_provider.dart';
 import 'package:sair_cpa/view_model/selected_report_provider.dart';
 
@@ -29,6 +30,7 @@ class _DescriptionCardWidgetState extends ConsumerState<DescriptionCardWidget> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = S.of(context); // Initialize localization
     final isPreviewMode = ref.watch(isPreviewModeProvider);
     final report = ref.watch(selectedReportProvider);
 
@@ -51,7 +53,7 @@ class _DescriptionCardWidgetState extends ConsumerState<DescriptionCardWidget> {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  "Description",
+                  l10n.descriptionTitle, // Localized
                   style: theme.textTheme.titleMedium?.copyWith(fontSize: 15),
                 ),
               ],
@@ -65,7 +67,8 @@ class _DescriptionCardWidgetState extends ConsumerState<DescriptionCardWidget> {
                 ref.read(descriptionProvider.notifier).update(value);
               },
               decoration: const InputDecoration(
-                hintText: "Add any additional details here...",
+                hintText: l10n.descriptionHint, 
+
                 alignLabelWithHint: true,
               ),
             ),

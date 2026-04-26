@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 import 'package:sair_cpa/view/routes.dart';
 import 'package:sair_cpa/view/widgets/profile_screen_widgets/settings_tile_widget.dart';
 
@@ -11,6 +12,7 @@ class SettingsSectionWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final l10n = S.of(context); // Initialize localization
 
     return Container(
       decoration: BoxDecoration(
@@ -24,8 +26,8 @@ class SettingsSectionWidget extends ConsumerWidget {
         children: [
           SettingsTileWidget(
             icon: Icons.language,
-            title: "Language",
-            subtitle: "English (US)",
+            title: l10n.settingsLanguage, // Localized
+            subtitle: l10n.settingsLanguageSubtitle, // Localized
             onTap: () =>
                 Navigator.of(context).pushNamed(AppRoute.languageScreen.route),
           ),
@@ -33,8 +35,8 @@ class SettingsSectionWidget extends ConsumerWidget {
 
           SettingsTileWidget(
             icon: Icons.security_outlined,
-            title: "Security",
-            subtitle: "2FA Enabled",
+            title: l10n.settingsSecurity, // Localized
+            subtitle: l10n.settingsSecuritySubtitle, // Localized
             onTap: () =>
                 Navigator.of(context).pushNamed(AppRoute.securityScreen.route),
           ),
@@ -42,8 +44,8 @@ class SettingsSectionWidget extends ConsumerWidget {
 
           SettingsTileWidget(
             icon: Icons.notifications_none_outlined,
-            title: "Notifications",
-            subtitle: "All enabled",
+            title: l10n.settingsNotifications, // Localized
+            subtitle: l10n.settingsNotificationsSubtitle, // Localized
             onTap: () => Navigator.of(
               context,
             ).pushNamed(AppRoute.notificationsScreen.route),
@@ -52,8 +54,8 @@ class SettingsSectionWidget extends ConsumerWidget {
 
           SettingsTileWidget(
             icon: Icons.logout,
-            title: "Logout",
-            subtitle: "End current session",
+            title:  l10n.settingsLogout,
+            subtitle: l10n.settingsLogoutSubtitle, 
             onTap: () async {
               // 1. Perform backend and storage logout
               await ref.read(userProfileProvider.notifier).logout();
@@ -66,6 +68,7 @@ class SettingsSectionWidget extends ConsumerWidget {
                   (route) => false,
                 );
               }
+
             },
             isDestructive: true,
           ),

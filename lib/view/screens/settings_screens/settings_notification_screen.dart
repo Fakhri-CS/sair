@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 import 'package:sair_cpa/view/widgets/global_widgets/sair_app_bar.dart';
 import 'package:sair_cpa/view/widgets/notification_screen_widget/setting_notification_screen_widget.dart';
 
@@ -29,11 +30,12 @@ class _SettingsNotificationScreenState extends State<SettingsNotificationScreen>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = S.of(context); // Initialize localization
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
       appBar: SairAppBar(
-        title: "Notifications",
+        title: l10n.notificationsTitle, // Localized
         actions: [
           IconButton(
             onPressed: () => Navigator.of(context).pop(),
@@ -49,7 +51,7 @@ class _SettingsNotificationScreenState extends State<SettingsNotificationScreen>
             Padding(
               padding: const EdgeInsets.only(left: 4.0, bottom: 12.0),
               child: Text(
-                "GLOBAL SETTINGS",
+                l10n.globalSettingsLabel, // Localized
                 style: theme.textTheme.labelMedium?.copyWith(
                   color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                   letterSpacing: 1.2,
@@ -67,8 +69,8 @@ class _SettingsNotificationScreenState extends State<SettingsNotificationScreen>
                 ),
               ),
               child: NotificationTileWidget(
-                title: "Allow Notifications",
-                subtitle: "Enable all push notifications",
+                title: l10n.allowNotifications, // Localized
+                subtitle: l10n.allowNotificationsSubtitle, // Localized
                 icon: Icons.notifications_active_outlined,
                 value: _masterToggle,
                 onChanged: _onMasterToggleChanged,
@@ -82,7 +84,7 @@ class _SettingsNotificationScreenState extends State<SettingsNotificationScreen>
             Padding(
               padding: const EdgeInsets.only(left: 4.0, bottom: 12.0),
               child: Text(
-                "ALERTS & UPDATES",
+                l10n.alertsAndUpdatesLabel, // Localized
                 style: theme.textTheme.labelMedium?.copyWith(
                   color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                   letterSpacing: 1.2,
@@ -103,8 +105,8 @@ class _SettingsNotificationScreenState extends State<SettingsNotificationScreen>
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   NotificationTileWidget(
-                    title: "Report Status",
-                    subtitle: "Get notified when report progress changes",
+                    title: l10n.reportStatus, // Localized
+                    subtitle: l10n.reportStatusSubtitle, // Localized
                     icon: Icons.track_changes_outlined,
                     value: _statusUpdates,
                     onChanged: _masterToggle
@@ -115,8 +117,8 @@ class _SettingsNotificationScreenState extends State<SettingsNotificationScreen>
                   ),
                   const Divider(),
                   NotificationTileWidget(
-                    title: "Email Alerts",
-                    subtitle: "Receive incident summaries via email",
+                    title: l10n.emailAlerts, // Localized
+                    subtitle: l10n.emailAlertsSubtitle, // Localized
                     icon: Icons.email_outlined,
                     value: _emailAlerts,
                     onChanged: _masterToggle
@@ -127,8 +129,8 @@ class _SettingsNotificationScreenState extends State<SettingsNotificationScreen>
                   ),
                   const Divider(),
                   NotificationTileWidget(
-                    title: "SMS Notifications",
-                    subtitle: "Critical updates sent to your phone",
+                    title: l10n.smsNotifications, // Localized
+                    subtitle: l10n.smsNotificationsSubtitle, // Localized
                     icon: Icons.sms_outlined,
                     value: _smsAlerts,
                     onChanged: _masterToggle

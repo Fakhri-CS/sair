@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sair_cpa/view_model/user_view_provider.dart';
 import 'package:sair_cpa/core/extensions/enum_extensions.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 
 class ProfileCardWidget extends ConsumerWidget {
   const ProfileCardWidget({super.key});
@@ -10,6 +11,7 @@ class ProfileCardWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final profileState = ref.watch(userProfileProvider);
+    final l10n = S.of(context); // Initialize localization
 
     return Container(
       width: double.infinity,

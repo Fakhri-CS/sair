@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 import 'package:sair_cpa/view/widgets/evidence_preview_screen_widgets/empty_evidence_widget.dart';
 import 'package:sair_cpa/view/widgets/evidence_preview_screen_widgets/evidence_grid_widget.dart';
 import 'package:sair_cpa/view/widgets/global_widgets/sair_app_bar.dart';
@@ -21,11 +22,12 @@ class EvidencePreviewScreen extends ConsumerWidget {
     final isEmpty = isPreviewMode
         ? (selectedReport?.mediaUrls.isEmpty ?? true)
         : evidencePhotos.isEmpty;
+    final l10n = S.of(context); // Initialize localization
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
       appBar: SairAppBar(
-        title: "Evidence Preview",
+        title: l10n.evidencePreviewTitle, // Localized string
         actions: [
           IconButton(
             onPressed: () => Navigator.of(context).pop(),

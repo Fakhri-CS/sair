@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 import 'package:sair_cpa/view/widgets/global_widgets/type_option_widget.dart';
 
 class AccidentTypeCardWidget extends StatefulWidget {
@@ -12,6 +13,8 @@ class _AccidentTypeCardWidgetState extends State<AccidentTypeCardWidget> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = S.of(context); // Initialize localization
+
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -23,31 +26,30 @@ class _AccidentTypeCardWidgetState extends State<AccidentTypeCardWidget> {
                 Icon(Icons.info_outline, size: 18, color: theme.colorScheme.secondary),
                 const SizedBox(width: 8),
                 Text(
-                  "Accident Type",
+                  l10n.accidentTypeTitle, // Localized string
                   style: theme.textTheme.titleMedium?.copyWith(fontSize: 15),
                 ),
               ],
             ),
             const SizedBox(height: 16),
-            const Row(
+            Row( // Removed const here
               children: [
-                TypeOptionWidget(title: "Rear-end"),
-                 SizedBox(width: 12),
-                TypeOptionWidget(title: "Frontal"),
+                TypeOptionWidget(title: l10n.accidentTypeRearEnd), // Localized string
+                const SizedBox(width: 12), // Kept const here
+                TypeOptionWidget(title: l10n.accidentTypeFrontal), // Localized string
               ],
             ),
             const SizedBox(height: 12),
-            const Row(
-              children:  [
-                TypeOptionWidget(title: "Side Swipe"),
-                 SizedBox(width: 12),
-                TypeOptionWidget(title: "Other"),
+            Row( // Removed const here
+              children: [
+                TypeOptionWidget(title: l10n.accidentTypeSideSwipe), // Localized string
+                const SizedBox(width: 12), // Kept const here
+                TypeOptionWidget(title: l10n.accidentTypeOther), // Localized string
               ],
             ),
           ],
         ),
       ),
     );
-
   }
 }

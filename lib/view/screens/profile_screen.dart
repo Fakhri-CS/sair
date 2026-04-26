@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 import 'package:sair_cpa/view/widgets/profile_screen_widgets/footer_widget.dart';
 import 'package:sair_cpa/view/widgets/profile_screen_widgets/profile_card_widget.dart';
 import 'package:sair_cpa/view/widgets/profile_screen_widgets/settings_section_widget.dart';
@@ -10,6 +11,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = S.of(context); // Initialize localization
 
     return SingleChildScrollView(
       child: Column(
@@ -22,7 +24,7 @@ class ProfileScreen extends StatelessWidget {
           const SizedBox(height: 32),
 
           Text(
-            "SETTINGS",
+            l10n.settingsHeader, // Localized string
             style: theme.textTheme.labelSmall?.copyWith(
               letterSpacing: 1.2,
               fontWeight: FontWeight.bold,

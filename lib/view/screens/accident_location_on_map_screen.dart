@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 import 'package:sair_cpa/view/widgets/accident_location_widgets/save_button_widget.dart';
 import 'package:sair_cpa/view/widgets/global_widgets/sair_app_bar.dart';
 import 'package:sair_cpa/view_model/is_preview_mode_provider.dart';
@@ -47,10 +48,11 @@ class _AccidentLocationOnMapScreenState
       targetLocation = LatLng(selectedReport.lat, selectedReport.lng);
       _pickedLocation = targetLocation;
     }
+    final l10n = S.of(context); // Initialize localization
 
     return Scaffold(
       appBar: SairAppBar(
-        title: "Accident Location",
+        title: l10n.accidentLocationTitle, // Localized string
         actions: isPreviewMode
             ? [
                 IconButton(
@@ -63,7 +65,6 @@ class _AccidentLocationOnMapScreenState
                   onPressed: () => Navigator.of(context).pop(),
                   icon: const Icon(Icons.arrow_back),
                 ),
-
                 SaveButtonWidget(pickedLocation: _pickedLocation),
               ],
       ),
@@ -73,12 +74,11 @@ class _AccidentLocationOnMapScreenState
           zoom: 13,
         ),
         onTap: isPreviewMode ? null : _selectLocation,
-
         markers: (_pickedLocation == null)
             ? {}
             : {
                 Marker(
-                  markerId: const MarkerId('m1'),
+                  markerId: const MarkerId('m1'), // Keep as hardcoded internal ID
                   position: _pickedLocation!,
                 ),
               },

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 import 'package:sair_cpa/view/screens/home_screen.dart';
 import 'package:sair_cpa/view/screens/profile_screen.dart';
 import 'package:sair_cpa/view/screens/reports_screen.dart';
@@ -17,6 +18,7 @@ class MainScreen extends ConsumerStatefulWidget {
 
 class _MainScreenState extends ConsumerState<MainScreen> {
   int _selectedPageIndex = 0;
+  
   void _selectPage(int index) {
     setState(() {
       _selectedPageIndex = index;
@@ -26,7 +28,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
   @override
   Widget build(BuildContext context) {
     final profileState = ref.watch(userProfileProvider);
-
+    final l10n = S.of(context);
     return profileState.when(
       data: (profile) {
         if (profile == null) {
@@ -41,20 +43,20 @@ class _MainScreenState extends ConsumerState<MainScreen> {
 
         Widget activeScreen = const HomeScreen();
         PreferredSizeWidget activeAppBar = SairAppBar(
-          title: "Hi, $userName",
+          title: l10n.greetingHi(userName)
           actions: const [MainActionsWidget()],
         );
 
         if (_selectedPageIndex == 1) {
           activeScreen = const ReportsScreen();
           activeAppBar = const SairAppBar(
-            title: "Reports",
+        title: l10n.reportsTitle,
             actions: [MainActionsWidget()],
           );
         } else if (_selectedPageIndex == 2) {
           activeScreen = const ProfileScreen();
           activeAppBar = const SairAppBar(
-            title: "Profile",
+        title: l10n.profileTitle,
             actions: [MainActionsWidget()],
           );
         }
@@ -80,21 +82,21 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                   padding: EdgeInsets.only(bottom: 4.0),
                   child: Icon(Icons.home),
                 ),
-                label: "Home",
+                label: l10n.homeNav,
               ),
               const BottomNavigationBarItem(
                 icon: Padding(
                   padding: EdgeInsets.only(bottom: 4.0),
                   child: Icon(Icons.assignment_outlined),
                 ),
-                label: "My Reports",
+                label: l10n.myReportsNav,
               ),
               const BottomNavigationBarItem(
                 icon: Padding(
                   padding: EdgeInsets.only(bottom: 4.0),
                   child: Icon(Icons.person_outline),
                 ),
-                label: "Profile",
+                label: l10n.profileTitle
               ),
             ],
           ),
@@ -112,6 +114,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
                 child: const Text("Retry"),
               ),
             ],
+
           ),
         ),
       ),

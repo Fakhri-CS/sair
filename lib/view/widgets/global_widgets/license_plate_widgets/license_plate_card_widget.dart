@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 import 'package:sair_cpa/view/widgets/global_widgets/license_plate_widgets/license_plate_input_widget.dart';
 import 'package:sair_cpa/view_model/is_preview_mode_provider.dart';
 import 'package:sair_cpa/view_model/license_plates_provider.dart';
@@ -37,6 +38,7 @@ class _LicensePlateCardWidgetState
     final plates = isPreviewMode && selectedReport != null
         ? selectedReport.platesNumber
         : ref.watch(licensePlatesProvider);
+    final l10n = S.of(context); // Initialize localization
 
     return Card(
       child: Padding(
@@ -53,7 +55,7 @@ class _LicensePlateCardWidgetState
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  "License Plate",
+                  l10n.licensePlateTitle, // Localized string
                   style: theme.textTheme.titleMedium?.copyWith(fontSize: 15),
                 ),
               ],
@@ -94,7 +96,7 @@ class _LicensePlateCardWidgetState
                     ref.read(licensePlatesProvider.notifier).addLicensePlate("");
                   },
                   icon: const Icon(Icons.add),
-                  label: const Text('Add Plate'),
+                  label: Text(l10n.addPlateButton), // Localized string
                 ),
               ),
             Row(
@@ -109,8 +111,8 @@ class _LicensePlateCardWidgetState
                 Expanded(
                   child: Text(
                     isPreviewMode
-                        ? "Plate numbers registered in this report"
-                        : "Enter characters and numbers exactly as on plate",
+                        ? l10n.plateNumbersHint // Localized string
+                        : l10n.enterPlateExactlyHint, // Localized string
                     style: theme.textTheme.labelSmall?.copyWith(
                       fontWeight: FontWeight.normal,
                       color: theme.textTheme.labelSmall?.color?.withValues(

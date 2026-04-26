@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:sair_cpa/model/notification_model.dart';
+import 'package:intl/intl.dart'; // Import for DateFormat fallback
+import 'package:sair_cpa/generated/l10n.dart';
+import 'package:sair_cpa/model/notificatoin_model.dart';
 
 class NotificationCardWidget extends StatelessWidget {
   const NotificationCardWidget({super.key, required this.notification});
+  
   final NotificationModel notification;
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = S.of(context);
+
     return Container(
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
@@ -32,7 +39,6 @@ class NotificationCardWidget extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Notification Icon
                 Container(
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
@@ -40,15 +46,12 @@ class NotificationCardWidget extends StatelessWidget {
                     shape: BoxShape.circle,
                   ),
                   child: Icon(
-                    Icons
-                        .notifications_active_outlined, // You can make this dynamic based on the title/type later
+                    Icons.notifications_active_outlined,
                     color: theme.primaryColor,
                     size: 20,
                   ),
                 ),
                 const SizedBox(width: 16),
-
-                // Content
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,7 +68,7 @@ class NotificationCardWidget extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            _formatDate(notification.createdAt),
+                            _formatDate(context, notification.createdAt), // Pass context
                             style: theme.textTheme.labelSmall?.copyWith(
                               color: theme.colorScheme.onSurface.withValues(
                                 alpha: 0.5,
@@ -95,19 +98,20 @@ class NotificationCardWidget extends StatelessWidget {
     );
   }
 
-  String _formatDate(DateTime date) {
+  String _formatDate(BuildContext context, DateTime date) {
     final now = DateTime.now();
     final difference = now.difference(date);
+    final l10n = S.of(context);
 
     if (difference.inMinutes < 60) {
-      return "${difference.inMinutes}m ago";
+      return l10n.timeMinutesAgo(difference.inMinutes);
     } else if (difference.inHours < 24) {
-      return "${difference.inHours}h ago";
+      return l10n.timeHoursAgo(difference.inHours);
     } else if (difference.inDays < 7) {
-      return "${difference.inDays}d ago";
+      return l10n.timeDaysAgo(difference.inDays);
     } else {
-      // Basic fallback format (e.g., "4/25/2026")
-      return "${date.month}/${date.day}/${date.year}";
+      // Use intl's DateFormat for a localized fallback (e.g., April 25, 2026)
+      return DateFormat.yMd(Localizations.localeOf(context).toString()).format(date);
     }
   }
 }

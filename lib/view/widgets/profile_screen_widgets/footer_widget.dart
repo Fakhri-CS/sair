@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 
 class FooterWidget extends StatelessWidget {
   const FooterWidget({super.key});
@@ -6,9 +7,11 @@ class FooterWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = S.of(context); // Initialize localization
+
     return Center(
       child: Text(
-        "Sear App v2.4.0 • Government Services Portal",
+        l10n.appFooterText("2.4.0", l10n.governmentServicesPortal), // Localized with parameters
         style: theme.textTheme.labelSmall?.copyWith(
           color: theme.textTheme.bodyMedium?.color?.withValues(alpha: 0.5),
         ),

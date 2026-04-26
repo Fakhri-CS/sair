@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 import 'package:sair_cpa/view/widgets/global_widgets/report_card/report_card_widget.dart';
 import 'package:sair_cpa/view/widgets/home_screen_widgets/dashboard_title_widget.dart';
 import 'package:sair_cpa/view_model/reports_provider.dart';
@@ -12,6 +13,8 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final reportsState = ref.watch(reportsProvider);
+  Widget build(BuildContext context) {
+    final l10n = S.of(context); // Initialize localization
 
     return SingleChildScrollView(
       child: Column(
@@ -24,7 +27,7 @@ class HomeScreen extends ConsumerWidget {
           const SizedBox(height: 24),
 
           Text(
-            "Recent Activity",
+            l10n.recentActivityTitle, // Localized string
             style: Theme.of(context).textTheme.titleMedium,
           ),
           const SizedBox(height: 16),

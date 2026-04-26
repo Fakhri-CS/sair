@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sair_cpa/view_model/submit_report_view_provider.dart';

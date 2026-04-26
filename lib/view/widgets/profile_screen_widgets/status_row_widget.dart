@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 import 'package:sair_cpa/view/widgets/profile_screen_widgets/status_card_widget.dart';
 import 'package:sair_cpa/view_model/reports_provider.dart';
 import 'package:sair_cpa/view_model/user_view_provider.dart';
@@ -25,6 +26,7 @@ class StatusRowWidget extends ConsumerWidget {
       loading: () => "...",
       error: (_, __) => "ERROR",
     );
+    final l10n = S.of(context); // Initialize localization
 
     return Row(
       children: [
@@ -34,7 +36,8 @@ class StatusRowWidget extends ConsumerWidget {
             iconBgColor: theme.primaryColor.withValues(alpha: 0.05),
             iconColor: theme.primaryColor,
             value: reportCount,
-            label: "TOTAL REPORTS",
+            label: l10n.totalReportsLabel, 
+
           ),
         ),
         const SizedBox(width: 16),
@@ -46,7 +49,8 @@ class StatusRowWidget extends ConsumerWidget {
                 Colors.grey.shade100,
             iconColor: theme.colorScheme.onSurface,
             value: accountStatus,
-            label: "ACCOUNT STATUS",
+            label: l10n.accountStatusLabel,
+
           ),
         ),
       ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 import 'package:sair_cpa/view/app_theme.dart';
 import 'package:sair_cpa/view/routes.dart';
 import 'package:sair_cpa/view_model/is_preview_mode_provider.dart';
@@ -10,12 +11,14 @@ class IncidentCtaWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final l10n = S.of(context); // Initialize localization
+
     return Column(
       children: [
-        Text("Had a minor incident?", style: theme.textTheme.titleLarge),
+        Text(l10n.incidentQuestion, style: theme.textTheme.titleLarge), // Localized
         const SizedBox(height: 6),
         Text(
-          "Quickly report and get back on your way.",
+          l10n.incidentSubtitle, // Localized
           style: theme.textTheme.bodyMedium,
         ),
         const SizedBox(height: 20),
@@ -57,7 +60,7 @@ class IncidentCtaWidget extends ConsumerWidget {
                 ),
                 const SizedBox(height: 20),
                 Text(
-                  "Report Minor Accident",
+                  l10n.reportMinorAccidentBtn, // Localized
                   style: theme.textTheme.titleMedium!.copyWith(
                     color: theme.colorScheme.onPrimary,
                     fontSize: 18,
@@ -65,7 +68,7 @@ class IncidentCtaWidget extends ConsumerWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  "Press Here To Report",
+                  l10n.pressToReportHint, // Localized
                   style: theme.textTheme.bodyMedium!.copyWith(
                     color: theme.colorScheme.onPrimary.withValues(alpha: 0.8),
                     fontSize: 12,

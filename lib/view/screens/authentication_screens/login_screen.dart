@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 import 'package:sair_cpa/view/widgets/login_screen_widgets/bottom_icon_widget.dart';
 import 'package:sair_cpa/view/widgets/login_screen_widgets/divider_widget.dart';
 import 'package:sair_cpa/view/widgets/login_screen_widgets/footer_links_widget.dart';
 import 'package:sair_cpa/view/widgets/login_screen_widgets/login_card_widget.dart';
-import 'package:sair_cpa/view/widgets/login_screen_widgets/sanad_login_button_widget.dart';
 import 'package:sair_cpa/view/widgets/login_screen_widgets/top_bar_widget.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -11,6 +11,8 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = S.of(context); // Initialize localization
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -24,8 +26,6 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 30),
               const DividerWidget(),
               const SizedBox(height: 30),
-              const SanadLoginButtonWidget(),
-              const SizedBox(height: 30),
               const FooterLinksWidget(),
               const SizedBox(height: 40),
               Row(
@@ -34,7 +34,7 @@ class LoginScreen extends StatelessWidget {
                   const Icon(Icons.info_outline, size: 16, color: Colors.grey),
                   const SizedBox(width: 8),
                   Text(
-                    "Having trouble? Contact Support at 19900",
+                    l10n.contactSupport, // Localized string
                     style: TextStyle(color: Colors.grey.shade600, fontSize: 12),
                   ),
                 ],
@@ -54,7 +54,7 @@ class LoginScreen extends StatelessWidget {
 
               // Copyright
               Text(
-                "© 2024 SAIR Digital Governance. All Rights Reserved.",
+                l10n.copyrightText, // Localized string
                 style: TextStyle(color: Colors.grey.shade400, fontSize: 10),
               ),
               const SizedBox(height: 20),

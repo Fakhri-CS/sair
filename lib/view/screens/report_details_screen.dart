@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 import 'package:sair_cpa/view/widgets/global_widgets/description_card_widget.dart';
 import 'package:sair_cpa/view/widgets/global_widgets/sair_app_bar.dart';
 import 'package:sair_cpa/view/widgets/report_details_widgets.dart/incident_card_info_widget.dart';
@@ -26,11 +27,12 @@ class ReportDetailsScreen extends ConsumerWidget {
         body: const Center(child: Text("No report selected")),
       );
     }
+    final l10n = S.of(context); // Initialize localization
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
       appBar: SairAppBar(
-        title: "Report Details",
+        title: l10n.reportDetailsTitle, // Localized string
         actions: [
           IconButton(
             onPressed: () => Navigator.of(context).pop(),
