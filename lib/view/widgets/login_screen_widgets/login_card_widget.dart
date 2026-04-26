@@ -44,6 +44,7 @@ class _LoginCardWidgetState extends ConsumerState<LoginCardWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = S.of(context); // Initialized localization variable
     final theme = Theme.of(context);
     final loginState = ref.watch(loginViewModelProvider);
 
@@ -56,13 +57,12 @@ class _LoginCardWidgetState extends ConsumerState<LoginCardWidget> {
         },
         error: (error, stack) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Login Failed: $error'), backgroundColor: theme.colorScheme.error),
+            SnackBar(content: Text(l10n.loginFailedMsg(error.toString())), backgroundColor: theme.colorScheme.error),
           );
         },
         loading: () {},
       );
     });
-    final l10n = S.of(context)!; // Initialized localization variable
 
     return Container(
       width: double.infinity,
@@ -104,14 +104,14 @@ class _LoginCardWidgetState extends ConsumerState<LoginCardWidget> {
                 RegisterTextFieldWidget(
 
                   controller: _emailController,
-                  label: l10n.nationalIdLabel,
-                  hint: l10n.nationalIdHint, 
+                  label: l10n.emailLabel,
+                  hint: l10n.emailHint, 
                   icon: Icons.email_outlined,
                   keyboardType: TextInputType.emailAddress,
 
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
-                      return 'Please enter your email';
+                      return l10n.errorEmptyEmail;
                     }
                     return null;
                   },

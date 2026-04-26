@@ -22,7 +22,7 @@ class LoginButtonWidget extends StatelessWidget {
             height: 20, 
             child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white)
           )
-        : const Text(        l10n.loginButton, style: TextStyle(letterSpacing: 0.5)),
+        : Text(        l10n.loginButton, style: const TextStyle(letterSpacing: 0.5)),
 
     );
   }

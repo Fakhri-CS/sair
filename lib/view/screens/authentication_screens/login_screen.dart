@@ -11,7 +11,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = S.of(context); // Initialize localization
+    final l10n = S.of(context);
 
     return Scaffold(
       body: SafeArea(
@@ -52,9 +52,8 @@ class LoginScreen extends StatelessWidget {
               ),
               const SizedBox(height: 20),
 
-              // Copyright
               Text(
-                l10n.copyrightText, // Localized string
+                l10n.copyrightText,
                 style: TextStyle(color: Colors.grey.shade400, fontSize: 10),
               ),
               const SizedBox(height: 20),

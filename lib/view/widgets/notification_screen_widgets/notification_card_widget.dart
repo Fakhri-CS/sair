@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sair_cpa/model/notification_model.dart';
-import 'package:intl/intl.dart'; // Import for DateFormat fallback
+import 'package:intl/intl.dart';
 import 'package:sair_cpa/generated/l10n.dart';
-import 'package:sair_cpa/model/notificatoin_model.dart';
+
 
 class NotificationCardWidget extends StatelessWidget {
   const NotificationCardWidget({super.key, required this.notification});
@@ -110,7 +110,6 @@ class NotificationCardWidget extends StatelessWidget {
     } else if (difference.inDays < 7) {
       return l10n.timeDaysAgo(difference.inDays);
     } else {
-      // Use intl's DateFormat for a localized fallback (e.g., April 25, 2026)
       return DateFormat.yMd(Localizations.localeOf(context).toString()).format(date);
     }
   }

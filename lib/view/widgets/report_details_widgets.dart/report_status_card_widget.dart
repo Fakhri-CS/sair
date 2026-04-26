@@ -46,13 +46,13 @@ class ReportStatusCardWidget extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 4),
-              Text(
-                "Report ${report.status.value.replaceAll('_', ' ').toUpperCase()}",
-                style: theme.textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: theme.colorScheme.onSurface,
-                ),
-              ),
+              // Text(
+              //   "Report ${report.status.value.replaceAll('_', ' ').toUpperCase()}",
+              //   style: theme.textTheme.titleLarge?.copyWith(
+              //     fontWeight: FontWeight.bold,
+              //     color: theme.colorScheme.onSurface,
+              //   ),
+              // ),
             ],
           ),
           Text(

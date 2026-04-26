@@ -20,22 +20,36 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(count) =>
+  static String m0(role) => "${role} ACCOUNT";
+
+  static String m1(count) =>
       "${Intl.plural(count, zero: 'You have no active reports', one: 'You have 1 active report', other: 'You have ${count} active reports')}";
 
-  static String m1(version, portalName) =>
+  static String m2(version, portalName) =>
       "Sair App v${version} • ${portalName}";
 
-  static String m2(name) => "Hi, ${name}";
+  static String m3(error) => "Could not load recent activity: ${error}";
 
-  static String m3(count) =>
+  static String m4(error) => "Error loading profile: ${error}";
+
+  static String m5(error) => "Error: ${error}";
+
+  static String m6(name) => "Hi, ${name}";
+
+  static String m7(error) => "Login Failed: ${error}";
+
+  static String m8(count) =>
       "${Intl.plural(count, zero: 'No photos attached', one: '1 photo attached', other: '${count} photos attached')}";
 
-  static String m4(days) => "${days}d ago";
+  static String m9(error) => "Registration Failed: ${error}";
 
-  static String m5(hours) => "${hours}h ago";
+  static String m10(error) => "Failed: ${error}";
 
-  static String m6(minutes) => "${minutes}m ago";
+  static String m11(days) => "${days}d ago";
+
+  static String m12(hours) => "${hours}h ago";
+
+  static String m13(minutes) => "${minutes}m ago";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -56,8 +70,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "accountStatusLabel": MessageLookupByLibrary.simpleMessage(
       "ACCOUNT STATUS",
     ),
+    "accountStatusType": m0,
     "accountStatusVerified": MessageLookupByLibrary.simpleMessage("VERIFIED"),
-    "activeReportsCount": m0,
+    "activeReportsCount": m1,
     "addPlateButton": MessageLookupByLibrary.simpleMessage("Add Plate"),
     "alertsAndUpdatesLabel": MessageLookupByLibrary.simpleMessage(
       "ALERTS & UPDATES",
@@ -71,7 +86,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
       "Already have an account? ",
     ),
-    "appFooterText": m1,
+    "appFooterText": m2,
     "arabicLabel": MessageLookupByLibrary.simpleMessage("العربية"),
     "arabicSubtitle": MessageLookupByLibrary.simpleMessage("Arabic"),
     "cancelButton": MessageLookupByLibrary.simpleMessage("Cancel"),
@@ -128,6 +143,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorInvalidEmail": MessageLookupByLibrary.simpleMessage(
       "Please enter a valid email address",
     ),
+    "errorLoadingActivity": m3,
+    "errorLoadingProfile": m4,
+    "errorLoadingProfileBasic": MessageLookupByLibrary.simpleMessage(
+      "Error loading profile",
+    ),
+    "errorMessage": m5,
     "evidenceCapturedTitle": MessageLookupByLibrary.simpleMessage(
       "Evidence Captured",
     ),
@@ -150,7 +171,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "governmentServicesPortal": MessageLookupByLibrary.simpleMessage(
       "Government Services Portal",
     ),
-    "greetingHi": m2,
+    "greetingHi": m6,
+    "guestAccount": MessageLookupByLibrary.simpleMessage("GUEST ACCOUNT"),
+    "guestUser": MessageLookupByLibrary.simpleMessage("Guest User"),
     "homeNav": MessageLookupByLibrary.simpleMessage("Home"),
     "incidentInfoTitle": MessageLookupByLibrary.simpleMessage(
       "Incident Information",
@@ -174,6 +197,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "logInLink": MessageLookupByLibrary.simpleMessage("Log in"),
     "loginButton": MessageLookupByLibrary.simpleMessage("Login"),
+    "loginFailedMsg": m7,
     "mockCategory": MessageLookupByLibrary.simpleMessage("Road Maintenance"),
     "mockDate": MessageLookupByLibrary.simpleMessage("24 Oct 2023"),
     "mockLocation": MessageLookupByLibrary.simpleMessage("Al-Olaya, Riyadh"),
@@ -192,6 +216,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "noNotificationsYet": MessageLookupByLibrary.simpleMessage(
       "No notifications yet",
     ),
+    "noRecentActivity": MessageLookupByLibrary.simpleMessage(
+      "No recent activity found.",
+    ),
+    "noReportSelected": MessageLookupByLibrary.simpleMessage(
+      "No report selected",
+    ),
+    "noReportsFound": MessageLookupByLibrary.simpleMessage("No reports found."),
+    "notAvailable": MessageLookupByLibrary.simpleMessage("N/A"),
     "notificationsTitle": MessageLookupByLibrary.simpleMessage("Notifications"),
     "passwordHint": MessageLookupByLibrary.simpleMessage(
       "Enter a secure password",
@@ -199,7 +231,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "passwordLabel": MessageLookupByLibrary.simpleMessage("Password"),
     "phoneHint": MessageLookupByLibrary.simpleMessage("e.g., 0790000000"),
     "phoneLabel": MessageLookupByLibrary.simpleMessage("Phone Number"),
-    "photosCountLabel": m3,
+    "photosCountLabel": m8,
     "plateNumbersHint": MessageLookupByLibrary.simpleMessage("Plate numbers"),
     "preferencesLabel": MessageLookupByLibrary.simpleMessage("PREFERENCES"),
     "pressToReportHint": MessageLookupByLibrary.simpleMessage(
@@ -215,9 +247,13 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "registerAppBarTitle": MessageLookupByLibrary.simpleMessage("Register"),
     "registerButton": MessageLookupByLibrary.simpleMessage("Register"),
+    "registerFailedMsg": m9,
     "registerNow": MessageLookupByLibrary.simpleMessage("Register Now"),
     "registerSuccessMessage": MessageLookupByLibrary.simpleMessage(
       "Registration Successful!",
+    ),
+    "registerSuccessMsg": MessageLookupByLibrary.simpleMessage(
+      "Registration Successful! Please log in.",
     ),
     "removePhotoContent": MessageLookupByLibrary.simpleMessage(
       "Are you sure you want to delete this evidence?",
@@ -243,7 +279,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "reportStatusSubtitle": MessageLookupByLibrary.simpleMessage(
       "Get notified when report progress changes",
     ),
+    "reportSubmitError": m10,
+    "reportSubmitSuccess": MessageLookupByLibrary.simpleMessage(
+      "Report submitted successfully!",
+    ),
     "reportsTitle": MessageLookupByLibrary.simpleMessage("Reports"),
+    "retryBtn": MessageLookupByLibrary.simpleMessage("Retry"),
     "safetyFirstDescription": MessageLookupByLibrary.simpleMessage(
       "Before reporting, move your vehicle to the nearest safe location to avoid obstructing traffic.",
     ),
@@ -296,10 +337,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "submittedOnLabel": MessageLookupByLibrary.simpleMessage("SUBMITTED ON"),
     "switchLanguageText": MessageLookupByLibrary.simpleMessage("عربي"),
     "takePicture": MessageLookupByLibrary.simpleMessage("Take Picture"),
-    "timeDaysAgo": m4,
-    "timeHoursAgo": m5,
+    "timeDaysAgo": m11,
+    "timeHoursAgo": m12,
     "timeLabel": MessageLookupByLibrary.simpleMessage("TIME"),
-    "timeMinutesAgo": m6,
+    "timeMinutesAgo": m13,
     "totalReportsLabel": MessageLookupByLibrary.simpleMessage("TOTAL REPORTS"),
     "trackInteractions": MessageLookupByLibrary.simpleMessage(
       "Track Interactions",

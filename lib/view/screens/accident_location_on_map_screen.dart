@@ -13,7 +13,7 @@ class AccidentLocationOnMapScreen extends ConsumerStatefulWidget {
 
   const AccidentLocationOnMapScreen({
     super.key,
-    this.initialLocation,
+    this.initialLocation = const LatLng(31.9539, 35.9106),
   });
 
   @override
@@ -24,7 +24,7 @@ class AccidentLocationOnMapScreen extends ConsumerStatefulWidget {
 class _AccidentLocationOnMapScreenState
     extends ConsumerState<AccidentLocationOnMapScreen> {
   LatLng? _pickedLocation;
-  
+
   @override
   void initState() {
     super.initState();
@@ -42,7 +42,8 @@ class _AccidentLocationOnMapScreenState
     final isPreviewMode = ref.watch(isPreviewModeProvider);
     final selectedReport = ref.watch(selectedReportProvider);
 
-    LatLng targetLocation = widget.initialLocation ?? const LatLng(31.9522, 35.2332);
+    LatLng targetLocation =
+        widget.initialLocation ?? const LatLng(31.9522, 35.2332);
 
     if (isPreviewMode && selectedReport != null) {
       targetLocation = LatLng(selectedReport.lat, selectedReport.lng);
@@ -69,16 +70,15 @@ class _AccidentLocationOnMapScreenState
               ],
       ),
       body: GoogleMap(
-        initialCameraPosition: CameraPosition(
-          target: targetLocation,
-          zoom: 13,
-        ),
+        initialCameraPosition: CameraPosition(target: targetLocation, zoom: 13),
         onTap: isPreviewMode ? null : _selectLocation,
         markers: (_pickedLocation == null)
             ? {}
             : {
                 Marker(
-                  markerId: const MarkerId('m1'), // Keep as hardcoded internal ID
+                  markerId: const MarkerId(
+                    'm1',
+                  ), // Keep as hardcoded internal ID
                   position: _pickedLocation!,
                 ),
               },

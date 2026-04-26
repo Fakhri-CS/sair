@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
+import 'package:sair_cpa/generated/l10n.dart';
 import 'package:sair_cpa/view/widgets/global_widgets/description_card_widget.dart';
 import 'package:sair_cpa/view/widgets/global_widgets/sair_app_bar.dart';
 import 'package:sair_cpa/view/widgets/report_details_widgets.dart/incident_card_info_widget.dart';
 import 'package:sair_cpa/view/widgets/report_details_widgets.dart/location_preview_card_widget.dart';
-import 'package:sair_cpa/view/widgets/report_details_widgets.dart/report_progress_card_widget.dart';
 import 'package:sair_cpa/view/widgets/report_details_widgets.dart/report_status_card_widget.dart';
 import 'package:sair_cpa/view/widgets/global_widgets/accident_type_card_widget.dart';
 import 'package:sair_cpa/view/widgets/global_widgets/evidence_card_widget.dart';
@@ -21,18 +20,22 @@ class ReportDetailsScreen extends ConsumerWidget {
     final theme = Theme.of(context);
     final report = ref.watch(selectedReportProvider);
 
+    final l10n = S.of(context);
     if (report == null) {
       return Scaffold(
-        appBar: SairAppBar(title: "Report Details"),
-        body: const Center(child: Text("No report selected")),
+        appBar: SairAppBar(
+          title: S.of(context).reportDetailsTitle,
+        ),
+        body: Center(
+          child: Text(S.of(context).noReportSelected),
+        ),
       );
     }
-    final l10n = S.of(context); // Initialize localization
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
       appBar: SairAppBar(
-        title: l10n.reportDetailsTitle, // Localized string
+        title: l10n.reportDetailsTitle,
         actions: [
           IconButton(
             onPressed: () => Navigator.of(context).pop(),
@@ -64,8 +67,6 @@ class ReportDetailsScreen extends ConsumerWidget {
               const SizedBox(height: 24),
               const SizedBox(height: 16),
               const EvidenceCardWidget(),
-              const SizedBox(height: 16),
-              const ReportProgressCardWidget(),
             ],
           ),
         ),

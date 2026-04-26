@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sair_cpa/generated/l10n.dart';
 import 'package:sair_cpa/view/app_theme.dart';
 import 'package:sair_cpa/view/routes.dart';
+import 'package:sair_cpa/view_model/locale_provider.dart';
 
 void main() {
   runApp(const ProviderScope(child:  MyApp()));
@@ -29,7 +30,6 @@ class MyApp extends ConsumerWidget {
         routes: Routes.routes,
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme,
-      ),
     );
   }
 }

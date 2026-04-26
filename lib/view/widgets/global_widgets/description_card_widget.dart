@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sair_cpa/view_model/description_provider.dart';
-import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
+import 'package:sair_cpa/generated/l10n.dart';
 import 'package:sair_cpa/view_model/is_preview_mode_provider.dart';
 import 'package:sair_cpa/view_model/selected_report_provider.dart';
 
@@ -66,7 +66,7 @@ class _DescriptionCardWidgetState extends ConsumerState<DescriptionCardWidget> {
               onChanged: (value) {
                 ref.read(descriptionProvider.notifier).update(value);
               },
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 hintText: l10n.descriptionHint, 
 
                 alignLabelWithHint: true,

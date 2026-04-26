@@ -487,5 +487,93 @@
   "emailAlerts": "Email Alerts",
   "emailAlertsSubtitle": "Receive incident summaries via email",
   "smsNotifications": "SMS Notifications",
-  "smsNotificationsSubtitle": "Critical updates sent to your phone"
+  "smsNotificationsSubtitle": "Critical updates sent to your phone",
+  "registerSuccessMsg": "Registration Successful! Please log in.",
+  "registerFailedMsg": "Registration Failed: {error}",
+  "@registerFailedMsg": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "noRecentActivity": "No recent activity found.",
+  "@noRecentActivity": {
+    "description": "Text shown when the user has no recent reports"
+  },
+  "errorLoadingActivity": "Could not load recent activity: {error}",
+  "@errorLoadingActivity": {
+    "description": "Error message shown when the reports fail to load",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "errorLoadingProfile": "Error loading profile: {error}",
+  "@errorLoadingProfile": {
+    "description": "Error message shown when the user profile fails to load",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "retryBtn": "Retry",
+  "@retryBtn": {
+    "description": "Text for the retry button"
+  },
+  "noReportSelected": "No report selected",
+  "@noReportSelected": {
+    "description": "Text shown when the report details screen is opened without a valid report"
+  },
+  "noReportsFound": "No reports found.",
+  "@noReportsFound": {
+    "description": "Text shown when the user's reports list is completely empty"
+  },
+  "errorMessage": "Error: {error}",
+  "@errorMessage": {
+    "description": "Generic error message displaying the error details",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "loginFailedMsg": "Login Failed: {error}",
+  "@loginFailedMsg": {
+    "description": "Error message shown when the user fails to log in",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "guestUser": "Guest User",
+  "@guestUser": {
+    "description": "Placeholder name for unauthenticated users"
+  },
+  "notAvailable": "N/A",
+  "accountStatusType": "{role} ACCOUNT",
+  "@accountStatusType": {
+    "placeholders": {
+      "role": { "type": "String" }
+    }
+  },
+  "guestAccount": "GUEST ACCOUNT",
+  "errorLoadingProfileBasic": "Error loading profile",
+  "reportSubmitSuccess": "Report submitted successfully!",
+  "@reportSubmitSuccess": {
+    "description": "Toast message shown after a successful report submission"
+  },
+  "reportSubmitError": "Failed: {error}",
+  "@reportSubmitError": {
+    "description": "Toast message shown when report submission fails",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  }
+  
 }

@@ -40,7 +40,7 @@ class ProfileCardWidget extends ConsumerWidget {
                   CircleAvatar(
                     radius: 40,
                     backgroundColor: theme.dividerTheme.color,
-                    child: const Icon(Icons.person, size: 40,),
+                    child: const Icon(Icons.person, size: 40),
                   ),
                   Positioned(
                     bottom: 0,
@@ -63,24 +63,32 @@ class ProfileCardWidget extends ConsumerWidget {
               const SizedBox(height: 16),
 
               Text(
-                profile?.email ?? "Guest User",
+                profile?.email ?? l10n.guestUser,
                 style: theme.textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 4),
 
-              Text(profile?.uid ?? "N/A", style: theme.textTheme.bodyMedium),
+              Text(
+                profile?.uid ?? l10n.notAvailable,
+                style: theme.textTheme.bodyMedium,
+              ),
               const SizedBox(height: 16),
 
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
                 decoration: BoxDecoration(
                   color: theme.primaryColor.withValues(alpha: 0.05),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Text(
-                  profile != null ? "${profile.role.value.toUpperCase()} ACCOUNT" : "GUEST ACCOUNT",
+                  profile != null
+                      ? l10n.accountStatusType(profile.role.value.toUpperCase())
+                      : l10n.guestAccount,
                   style: theme.textTheme.labelSmall?.copyWith(
                     color: theme.primaryColor,
                     fontWeight: FontWeight.bold,
@@ -91,7 +99,8 @@ class ProfileCardWidget extends ConsumerWidget {
           );
         },
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (error, stack) => const Center(child: Text("Error loading profile")),
+        error: (error, stack) =>
+            Center(child: Text(l10n.errorLoadingProfileBasic)),
       ),
     );
   }

@@ -146,5 +146,22 @@
   "emailAlerts": "تنبيهات البريد الإلكتروني",
   "emailAlertsSubtitle": "تلقي ملخصات البلاغات عبر البريد",
   "smsNotifications": "رسائل SMS",
-  "smsNotificationsSubtitle": "تحديثات هامة تصل إلى هاتفك"
+  "smsNotificationsSubtitle": "تحديثات هامة تصل إلى هاتفك",
+  "registerSuccessMsg": "تم التسجيل بنجاح! يرجى تسجيل الدخول.",
+  "registerFailedMsg": "فشل التسجيل: {error}",
+  "noRecentActivity": "لا يوجد نشاط حديث.",
+  "errorLoadingActivity": "تعذر تحميل النشاط الحديث: {error}",
+  "errorLoadingProfile": "خطأ في تحميل الملف الشخصي: {error}",
+  "retryBtn": "إعادة المحاولة",
+  "noReportSelected": "لم يتم تحديد أي بلاغ",
+  "noReportsFound": "لم يتم العثور على أي بلاغات.",
+  "errorMessage": "خطأ: {error}",
+  "loginFailedMsg": "فشل تسجيل الدخول: {error}",
+  "guestUser": "مستخدم زائر",
+  "notAvailable": "غير متوفر",
+  "accountStatusType": "حساب {role}",
+  "guestAccount": "حساب زائر",
+  "errorLoadingProfileBasic": "خطأ في تحميل الملف الشخصي",
+  "reportSubmitSuccess": "تم تقديم البلاغ بنجاح!",
+  "reportSubmitError": "فشل التقديم: {error}"
 }

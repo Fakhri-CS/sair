@@ -20,22 +20,36 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
-  static String m0(count) =>
+  static String m0(role) => "حساب ${role}";
+
+  static String m1(count) =>
       "${Intl.plural(count, zero: 'ليس لديك بلاغات نشطة', one: 'لديك بلاغ نشط واحد', two: 'لديك بلاغان نشطان', other: 'لديك ${count} بلاغات نشطة')}";
 
-  static String m1(version, portalName) =>
+  static String m2(version, portalName) =>
       "تطبيق سير v${version} • ${portalName}";
 
-  static String m2(name) => "مرحباً، ${name}";
+  static String m3(error) => "تعذر تحميل النشاط الحديث: ${error}";
 
-  static String m3(count) =>
+  static String m4(error) => "خطأ في تحميل الملف الشخصي: ${error}";
+
+  static String m5(error) => "خطأ: ${error}";
+
+  static String m6(name) => "مرحباً، ${name}";
+
+  static String m7(error) => "فشل تسجيل الدخول: ${error}";
+
+  static String m8(count) =>
       "${Intl.plural(count, zero: 'لا توجد صور مرفقة', one: 'صورة واحدة مرفقة', two: 'صورتان مرفقتان', other: '${count} صور مرفقة')}";
 
-  static String m4(days) => "منذ ${days} أيام";
+  static String m9(error) => "فشل التسجيل: ${error}";
 
-  static String m5(hours) => "منذ ${hours} ساعة";
+  static String m10(error) => "فشل التقديم: ${error}";
 
-  static String m6(minutes) => "منذ ${minutes} دقيقة";
+  static String m11(days) => "منذ ${days} أيام";
+
+  static String m12(hours) => "منذ ${hours} ساعة";
+
+  static String m13(minutes) => "منذ ${minutes} دقيقة";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -54,8 +68,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "حماية الحساب",
     ),
     "accountStatusLabel": MessageLookupByLibrary.simpleMessage("حالة الحساب"),
+    "accountStatusType": m0,
     "accountStatusVerified": MessageLookupByLibrary.simpleMessage("مفعل"),
-    "activeReportsCount": m0,
+    "activeReportsCount": m1,
     "addPlateButton": MessageLookupByLibrary.simpleMessage("إضافة لوحة"),
     "alertsAndUpdatesLabel": MessageLookupByLibrary.simpleMessage(
       "التنبيهات والتحديثات",
@@ -69,7 +84,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "alreadyHaveAccount": MessageLookupByLibrary.simpleMessage(
       "لديك حساب بالفعل؟ ",
     ),
-    "appFooterText": m1,
+    "appFooterText": m2,
     "arabicLabel": MessageLookupByLibrary.simpleMessage("العربية"),
     "arabicSubtitle": MessageLookupByLibrary.simpleMessage("العربية"),
     "cancelButton": MessageLookupByLibrary.simpleMessage("إلغاء"),
@@ -124,6 +139,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorInvalidEmail": MessageLookupByLibrary.simpleMessage(
       "يرجى إدخال بريد إلكتروني صحيح",
     ),
+    "errorLoadingActivity": m3,
+    "errorLoadingProfile": m4,
+    "errorLoadingProfileBasic": MessageLookupByLibrary.simpleMessage(
+      "خطأ في تحميل الملف الشخصي",
+    ),
+    "errorMessage": m5,
     "evidenceCapturedTitle": MessageLookupByLibrary.simpleMessage(
       "الأدلة الملتقطة",
     ),
@@ -144,7 +165,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "governmentServicesPortal": MessageLookupByLibrary.simpleMessage(
       "بوابة الخدمات الحكومية",
     ),
-    "greetingHi": m2,
+    "greetingHi": m6,
+    "guestAccount": MessageLookupByLibrary.simpleMessage("حساب زائر"),
+    "guestUser": MessageLookupByLibrary.simpleMessage("مستخدم زائر"),
     "homeNav": MessageLookupByLibrary.simpleMessage("الرئيسية"),
     "incidentInfoTitle": MessageLookupByLibrary.simpleMessage("معلومات الحادث"),
     "incidentQuestion": MessageLookupByLibrary.simpleMessage(
@@ -166,6 +189,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "logInLink": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
     "loginButton": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+    "loginFailedMsg": m7,
     "mockCategory": MessageLookupByLibrary.simpleMessage("صيانة الطرق"),
     "mockDate": MessageLookupByLibrary.simpleMessage("24 أكتوبر 2023"),
     "mockLocation": MessageLookupByLibrary.simpleMessage("العليا، الرياض"),
@@ -184,12 +208,22 @@ class MessageLookup extends MessageLookupByLibrary {
     "noNotificationsYet": MessageLookupByLibrary.simpleMessage(
       "لا توجد إشعارات بعد",
     ),
+    "noRecentActivity": MessageLookupByLibrary.simpleMessage(
+      "لا يوجد نشاط حديث.",
+    ),
+    "noReportSelected": MessageLookupByLibrary.simpleMessage(
+      "لم يتم تحديد أي بلاغ",
+    ),
+    "noReportsFound": MessageLookupByLibrary.simpleMessage(
+      "لم يتم العثور على أي بلاغات.",
+    ),
+    "notAvailable": MessageLookupByLibrary.simpleMessage("غير متوفر"),
     "notificationsTitle": MessageLookupByLibrary.simpleMessage("الإشعارات"),
     "passwordHint": MessageLookupByLibrary.simpleMessage("أدخل كلمة مرور آمنة"),
     "passwordLabel": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
     "phoneHint": MessageLookupByLibrary.simpleMessage("مثال: 0790000000"),
     "phoneLabel": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
-    "photosCountLabel": m3,
+    "photosCountLabel": m8,
     "plateNumbersHint": MessageLookupByLibrary.simpleMessage("أرقام اللوحات"),
     "preferencesLabel": MessageLookupByLibrary.simpleMessage("التفضيلات"),
     "pressToReportHint": MessageLookupByLibrary.simpleMessage(
@@ -209,9 +243,13 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "registerAppBarTitle": MessageLookupByLibrary.simpleMessage("تسجيل"),
     "registerButton": MessageLookupByLibrary.simpleMessage("تسجيل"),
+    "registerFailedMsg": m9,
     "registerNow": MessageLookupByLibrary.simpleMessage("سجل الآن"),
     "registerSuccessMessage": MessageLookupByLibrary.simpleMessage(
       "تم التسجيل بنجاح!",
+    ),
+    "registerSuccessMsg": MessageLookupByLibrary.simpleMessage(
+      "تم التسجيل بنجاح! يرجى تسجيل الدخول.",
     ),
     "removePhotoContent": MessageLookupByLibrary.simpleMessage(
       "هل أنت متأكد أنك تريد حذف هذا الدليل؟",
@@ -233,7 +271,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "reportStatusSubtitle": MessageLookupByLibrary.simpleMessage(
       "تلقي تنبيه عند تغير حالة البلاغ",
     ),
+    "reportSubmitError": m10,
+    "reportSubmitSuccess": MessageLookupByLibrary.simpleMessage(
+      "تم تقديم البلاغ بنجاح!",
+    ),
     "reportsTitle": MessageLookupByLibrary.simpleMessage("التقارير"),
+    "retryBtn": MessageLookupByLibrary.simpleMessage("إعادة المحاولة"),
     "safetyFirstDescription": MessageLookupByLibrary.simpleMessage(
       "قبل البدء بالإبلاغ، يرجى نقل مركبتك إلى أقرب موقع آمن لتجنب عرقلة حركة السير.",
     ),
@@ -278,10 +321,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "submittedOnLabel": MessageLookupByLibrary.simpleMessage("تاريخ التقديم"),
     "switchLanguageText": MessageLookupByLibrary.simpleMessage("English"),
     "takePicture": MessageLookupByLibrary.simpleMessage("التقط صورة"),
-    "timeDaysAgo": m4,
-    "timeHoursAgo": m5,
+    "timeDaysAgo": m11,
+    "timeHoursAgo": m12,
     "timeLabel": MessageLookupByLibrary.simpleMessage("الوقت"),
-    "timeMinutesAgo": m6,
+    "timeMinutesAgo": m13,
     "totalReportsLabel": MessageLookupByLibrary.simpleMessage(
       "إجمالي البلاغات",
     ),

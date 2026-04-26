@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
+import 'package:sair_cpa/generated/l10n.dart';
 import 'package:sair_cpa/view/screens/home_screen.dart';
 import 'package:sair_cpa/view/screens/profile_screen.dart';
 import 'package:sair_cpa/view/screens/reports_screen.dart';
@@ -18,7 +18,7 @@ class MainScreen extends ConsumerStatefulWidget {
 
 class _MainScreenState extends ConsumerState<MainScreen> {
   int _selectedPageIndex = 0;
-  
+
   void _selectPage(int index) {
     setState(() {
       _selectedPageIndex = index;
@@ -32,32 +32,35 @@ class _MainScreenState extends ConsumerState<MainScreen> {
     return profileState.when(
       data: (profile) {
         if (profile == null) {
-          // If profile is null and we are on MainScreen, it means no valid token/session
           WidgetsBinding.instance.addPostFrameCallback((_) {
             Navigator.pushReplacementNamed(context, AppRoute.login.route);
           });
-          return const Scaffold(body: Center(child: CircularProgressIndicator()));
+          return const Scaffold(
+            body: Center(child: CircularProgressIndicator()),
+          );
         }
 
-        final userName = profile.email.split('@').first; // Fallback since fullName isn't in MeResponse
+        final userName = profile.email
+            .split('@')
+            .first; // Fallback since fullName isn't in MeResponse
 
         Widget activeScreen = const HomeScreen();
         PreferredSizeWidget activeAppBar = SairAppBar(
-          title: l10n.greetingHi(userName)
+          title: l10n.greetingHi(userName),
           actions: const [MainActionsWidget()],
         );
 
         if (_selectedPageIndex == 1) {
           activeScreen = const ReportsScreen();
-          activeAppBar = const SairAppBar(
-        title: l10n.reportsTitle,
-            actions: [MainActionsWidget()],
+          activeAppBar = SairAppBar(
+            title: l10n.reportsTitle,
+            actions: [const MainActionsWidget()],
           );
         } else if (_selectedPageIndex == 2) {
           activeScreen = const ProfileScreen();
-          activeAppBar = const SairAppBar(
-        title: l10n.profileTitle,
-            actions: [MainActionsWidget()],
+          activeAppBar = SairAppBar(
+            title: l10n.profileTitle,
+            actions: [const MainActionsWidget()],
           );
         }
 
@@ -65,7 +68,10 @@ class _MainScreenState extends ConsumerState<MainScreen> {
           appBar: activeAppBar,
           body: SafeArea(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20.0,
+                vertical: 16.0,
+              ),
               child: activeScreen,
             ),
           ),
@@ -73,48 +79,51 @@ class _MainScreenState extends ConsumerState<MainScreen> {
             onTap: _selectPage,
             currentIndex: _selectedPageIndex,
             items: [
-              const BottomNavigationBarItem(
-                icon: Padding(
+              BottomNavigationBarItem(
+                icon: const Padding(
                   padding: EdgeInsets.only(bottom: 4.0),
                   child: Icon(Icons.home_outlined),
                 ),
-                activeIcon: Padding(
+                activeIcon: const Padding(
                   padding: EdgeInsets.only(bottom: 4.0),
                   child: Icon(Icons.home),
                 ),
                 label: l10n.homeNav,
               ),
-              const BottomNavigationBarItem(
-                icon: Padding(
+              BottomNavigationBarItem(
+                icon: const Padding(
                   padding: EdgeInsets.only(bottom: 4.0),
                   child: Icon(Icons.assignment_outlined),
                 ),
                 label: l10n.myReportsNav,
               ),
-              const BottomNavigationBarItem(
-                icon: Padding(
+              BottomNavigationBarItem(
+                icon: const Padding(
                   padding: EdgeInsets.only(bottom: 4.0),
                   child: Icon(Icons.person_outline),
                 ),
-                label: l10n.profileTitle
+                label: l10n.profileTitle,
               ),
             ],
           ),
         );
       },
-      loading: () => const Scaffold(body: Center(child: CircularProgressIndicator())),
+      loading: () =>
+          const Scaffold(body: Center(child: CircularProgressIndicator())),
       error: (error, stack) => Scaffold(
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Error loading profile: $error"),
+              Text(
+                S.of(context).errorLoadingProfile(error.toString()),
+              ),
               ElevatedButton(
-                onPressed: () => ref.read(userProfileProvider.notifier).refresh(),
-                child: const Text("Retry"),
+                onPressed: () =>
+                    ref.read(userProfileProvider.notifier).refresh(),
+                child: Text(S.of(context).retryBtn),
               ),
             ],
-
           ),
         ),
       ),

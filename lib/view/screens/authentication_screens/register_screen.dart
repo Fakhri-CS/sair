@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
+import 'package:sair_cpa/generated/l10n.dart';
 import 'package:sair_cpa/view/widgets/global_widgets/sair_app_bar.dart';
 import 'package:sair_cpa/view/widgets/global_widgets/text_field_widget.dart';
 import 'package:sair_cpa/view_model/authentication_logic_provider.dart';
@@ -52,6 +52,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = S.of(context);
     final registerState = ref.watch(registerViewModelProvider);
 
     ref.listen<AsyncValue<UserModel?>>(registerViewModelProvider, (previous, next) {
@@ -59,25 +60,27 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
         data: (user) {
           if (user != null) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Registration Successful! Please log in.')),
+              SnackBar(content: Text(l10n.registerSuccessMsg)),
             );
             Navigator.pop(context);
           }
         },
         error: (error, stack) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Registration Failed: $error'), backgroundColor: theme.colorScheme.error),
+            SnackBar(
+              content: Text(l10n.registerFailedMsg(error.toString())), 
+              backgroundColor: theme.colorScheme.error,
+            ),
           );
         },
         loading: () {},
       );
     });
-    final l10n = S.of(context); // Initialize localization
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
       appBar: SairAppBar(
-        title: l10n.registerAppBarTitle, // Localized string
+        title: l10n.registerAppBarTitle,
         actions: [
           IconButton(
             onPressed: () => Navigator.of(context).pop(),
@@ -94,7 +97,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  l10n.createAccountTitle, // Localized string
+                  l10n.createAccountTitle,
                   style: theme.textTheme.headlineMedium?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: theme.colorScheme.onSurface,
@@ -102,7 +105,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  l10n.createAccountSubtitle, // Localized string
+                  l10n.createAccountSubtitle,
                   style: theme.textTheme.bodyLarge?.copyWith(
                     color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                   ),
@@ -110,12 +113,12 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                 const SizedBox(height: 32),
                 RegisterTextFieldWidget(
                   controller: _fullNameController,
-                  label: l10n.fullNameLabel, // Localized string
-                  hint: l10n.fullNameHint, // Localized string
+                  label: l10n.fullNameLabel,
+                  hint: l10n.fullNameHint,
                   icon: Icons.person_outline,
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
-                      return l10n.errorEmptyFullName; // Localized string
+                      return l10n.errorEmptyFullName;
                     }
                     return null;
                   },
@@ -124,16 +127,16 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
 
                 RegisterTextFieldWidget(
                   controller: _emailController,
-                  label: l10n.emailLabel, // Localized string
-                  hint: l10n.emailHint, // Localized string
+                  label: l10n.emailLabel,
+                  hint: l10n.emailHint,
                   icon: Icons.email_outlined,
                   keyboardType: TextInputType.emailAddress,
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
-                      return l10n.errorEmptyEmail; // Localized string
+                      return l10n.errorEmptyEmail;
                     }
                     if (!value.contains('@')) {
-                      return l10n.errorInvalidEmail; // Localized string
+                      return l10n.errorInvalidEmail;
                     }
                     return null;
                   },
@@ -142,13 +145,13 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
 
                 RegisterTextFieldWidget(
                   controller: _phoneController,
-                  label: l10n.phoneLabel, // Localized string
-                  hint: l10n.phoneHint, // Localized string
+                  label: l10n.phoneLabel,
+                  hint: l10n.phoneHint,
                   icon: Icons.phone_outlined,
                   keyboardType: TextInputType.phone,
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
-                      return l10n.errorEmptyPhone; // Localized string
+                      return l10n.errorEmptyPhone;
                     }
                     return null;
                   },
@@ -157,8 +160,8 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
 
                 RegisterTextFieldWidget(
                   controller: _nationalIdController,
-                  label: l10n.nationalIdLabel, // Reusing existing key
-                  hint: l10n.nationalIdHint, // Reusing existing key
+                  label: l10n.nationalIdLabel,
+                  hint: l10n.nationalIdHint,
                   icon: Icons.badge_outlined,
                   keyboardType: TextInputType.number,
                   validator: (value) {
@@ -169,8 +172,8 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
 
                 RegisterTextFieldWidget(
                   controller: _passwordController,
-                  label: l10n.passwordLabel, // Reusing existing key
-                  hint: l10n.passwordHint, // Reusing existing key
+                  label: l10n.passwordLabel,
+                  hint: l10n.passwordHint,
                   icon: Icons.lock_outline,
                   obscureText: !_isPasswordVisible,
                   suffixIcon: IconButton(
@@ -212,7 +215,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                             ),
                           )
                         : Text(
-                            l10n.registerButton, // Localized string
+                            l10n.registerButton,
                             style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
@@ -226,7 +229,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      l10n.alreadyHaveAccount, // Localized string
+                      l10n.alreadyHaveAccount,
                       style: theme.textTheme.bodyMedium?.copyWith(
                         color: theme.colorScheme.onSurface.withValues(
                           alpha: 0.6,
@@ -238,7 +241,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                         Navigator.pop(context);
                       },
                       child: Text(
-                        l10n.logInLink, // Localized string
+                        l10n.logInLink,
                         style: theme.textTheme.bodyMedium?.copyWith(
                           color: theme.primaryColor,
                           fontWeight: FontWeight.bold,

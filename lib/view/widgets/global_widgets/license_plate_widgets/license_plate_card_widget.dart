@@ -77,28 +77,28 @@ class _LicensePlateCardWidgetState
                         },
                       ),
                     ),
-                    if (!isPreviewMode && plates.length > 1)
-                      IconButton(
-                        onPressed: () {
-                          ref.read(licensePlatesProvider.notifier).removeAt(i);
-                        },
-                        icon: const Icon(Icons.remove_circle_outline, color: Colors.red),
-                      ),
+                    // if (!isPreviewMode && plates.length > 1)
+                    //   IconButton(
+                    //     onPressed: () {
+                    //       ref.read(licensePlatesProvider.notifier).removeAt(i);
+                    //     },
+                    //     icon: const Icon(Icons.remove_circle_outline, color: Colors.red),
+                    //   ),
                   ],
                 ),
               ),
             
-            if (!isPreviewMode)
-              SizedBox(
-                width: double.infinity,
-                child: TextButton.icon(
-                  onPressed: () {
-                    ref.read(licensePlatesProvider.notifier).addLicensePlate("");
-                  },
-                  icon: const Icon(Icons.add),
-                  label: Text(l10n.addPlateButton), // Localized string
-                ),
-              ),
+            // if (!isPreviewMode)
+            //   SizedBox(
+            //     width: double.infinity,
+            //     child: TextButton.icon(
+            //       onPressed: () {
+            //         ref.read(licensePlatesProvider.notifier).addLicensePlate("");
+            //       },
+            //       icon: const Icon(Icons.add),
+            //       label: Text(l10n.addPlateButton), // Localized string
+            //     ),
+            //   ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

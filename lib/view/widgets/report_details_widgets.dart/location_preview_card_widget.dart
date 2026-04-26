@@ -40,10 +40,10 @@ class LocationPreviewCardWidget extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-Padding(
+          Padding(
             padding: const EdgeInsets.all(16.0),
             child: Text(
-              S.of(context).locationPreviewTitle, // Localized string
+              S.of(context).locationPreviewTitle,
               style: theme.textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
                 color: theme.colorScheme.onSurface,
@@ -70,7 +70,7 @@ Padding(
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       color:
-                          theme.primaryColor, // Pinkish-red matching the design
+                          theme.primaryColor,
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
@@ -103,12 +103,14 @@ Padding(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  "$latitude, $longitude",
-                  style: theme.textTheme.bodyMedium?.copyWith(
-                    color: theme.colorScheme.onSurface.withValues(alpha: 0.8),
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: 0.5,
+                Expanded(
+                  child: Text(
+                    "$latitude, $longitude",
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: theme.colorScheme.onSurface.withValues(alpha: 0.8),
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 0.5,
+                    ),
                   ),
                 ),
 

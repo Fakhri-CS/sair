@@ -1480,6 +1480,172 @@ class S {
       args: [],
     );
   }
+
+  /// `Registration Successful! Please log in.`
+  String get registerSuccessMsg {
+    return Intl.message(
+      'Registration Successful! Please log in.',
+      name: 'registerSuccessMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Registration Failed: {error}`
+  String registerFailedMsg(String error) {
+    return Intl.message(
+      'Registration Failed: $error',
+      name: 'registerFailedMsg',
+      desc: '',
+      args: [error],
+    );
+  }
+
+  /// `No recent activity found.`
+  String get noRecentActivity {
+    return Intl.message(
+      'No recent activity found.',
+      name: 'noRecentActivity',
+      desc: 'Text shown when the user has no recent reports',
+      args: [],
+    );
+  }
+
+  /// `Could not load recent activity: {error}`
+  String errorLoadingActivity(String error) {
+    return Intl.message(
+      'Could not load recent activity: $error',
+      name: 'errorLoadingActivity',
+      desc: 'Error message shown when the reports fail to load',
+      args: [error],
+    );
+  }
+
+  /// `Error loading profile: {error}`
+  String errorLoadingProfile(String error) {
+    return Intl.message(
+      'Error loading profile: $error',
+      name: 'errorLoadingProfile',
+      desc: 'Error message shown when the user profile fails to load',
+      args: [error],
+    );
+  }
+
+  /// `Retry`
+  String get retryBtn {
+    return Intl.message(
+      'Retry',
+      name: 'retryBtn',
+      desc: 'Text for the retry button',
+      args: [],
+    );
+  }
+
+  /// `No report selected`
+  String get noReportSelected {
+    return Intl.message(
+      'No report selected',
+      name: 'noReportSelected',
+      desc:
+          'Text shown when the report details screen is opened without a valid report',
+      args: [],
+    );
+  }
+
+  /// `No reports found.`
+  String get noReportsFound {
+    return Intl.message(
+      'No reports found.',
+      name: 'noReportsFound',
+      desc: 'Text shown when the user\'s reports list is completely empty',
+      args: [],
+    );
+  }
+
+  /// `Error: {error}`
+  String errorMessage(String error) {
+    return Intl.message(
+      'Error: $error',
+      name: 'errorMessage',
+      desc: 'Generic error message displaying the error details',
+      args: [error],
+    );
+  }
+
+  /// `Login Failed: {error}`
+  String loginFailedMsg(String error) {
+    return Intl.message(
+      'Login Failed: $error',
+      name: 'loginFailedMsg',
+      desc: 'Error message shown when the user fails to log in',
+      args: [error],
+    );
+  }
+
+  /// `Guest User`
+  String get guestUser {
+    return Intl.message(
+      'Guest User',
+      name: 'guestUser',
+      desc: 'Placeholder name for unauthenticated users',
+      args: [],
+    );
+  }
+
+  /// `N/A`
+  String get notAvailable {
+    return Intl.message('N/A', name: 'notAvailable', desc: '', args: []);
+  }
+
+  /// `{role} ACCOUNT`
+  String accountStatusType(String role) {
+    return Intl.message(
+      '$role ACCOUNT',
+      name: 'accountStatusType',
+      desc: '',
+      args: [role],
+    );
+  }
+
+  /// `GUEST ACCOUNT`
+  String get guestAccount {
+    return Intl.message(
+      'GUEST ACCOUNT',
+      name: 'guestAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error loading profile`
+  String get errorLoadingProfileBasic {
+    return Intl.message(
+      'Error loading profile',
+      name: 'errorLoadingProfileBasic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Report submitted successfully!`
+  String get reportSubmitSuccess {
+    return Intl.message(
+      'Report submitted successfully!',
+      name: 'reportSubmitSuccess',
+      desc: 'Toast message shown after a successful report submission',
+      args: [],
+    );
+  }
+
+  /// `Failed: {error}`
+  String reportSubmitError(String error) {
+    return Intl.message(
+      'Failed: $error',
+      name: 'reportSubmitError',
+      desc: 'Toast message shown when report submission fails',
+      args: [error],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

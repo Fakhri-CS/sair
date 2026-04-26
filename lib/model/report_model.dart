@@ -1,6 +1,8 @@
 
+import 'package:flutter/material.dart';
 import 'package:sair_cpa/core/enums/app_enums.dart';
 import 'package:sair_cpa/core/extensions/enum_extensions.dart';
+import 'package:sair_cpa/generated/l10n.dart';
 
 class ReportModel {
   final String id;
@@ -79,4 +81,5 @@ class ReportModel {
     'createdAt': createdAt.toIso8601String(),
     'updatedAt': updatedAt.toIso8601String(),
   };
+
 }
