@@ -4,6 +4,9 @@ import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 import 'package:sair_cpa/view/routes.dart';
 import 'package:sair_cpa/view_model/evidence_photos_provider.dart';
 
+import 'package:sair_cpa/view_model/is_preview_mode_provider.dart';
+import 'package:sair_cpa/view_model/selected_report_provider.dart';
+
 class EvidenceCardWidget extends ConsumerWidget {
   const EvidenceCardWidget({super.key});
 
@@ -12,6 +15,12 @@ class EvidenceCardWidget extends ConsumerWidget {
     final theme = Theme.of(context);
     final l10n = S.of(context); // Initialize localization
     final evidencePhotos = ref.watch(evidencePhotosProvider);
+    final isPreviewMode = ref.watch(isPreviewModeProvider);
+    final selectedReport = ref.watch(selectedReportProvider);
+
+    final photoCount = isPreviewMode && selectedReport != null
+        ? selectedReport.mediaUrls.length
+        : evidencePhotos.length;
 
     return Card(
       child: Padding(
@@ -33,7 +42,7 @@ class EvidenceCardWidget extends ConsumerWidget {
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    l10n.photosCountLabel(evidencePhotos.length), // Localized Plural
+                    l10n.photosCountLabel(photoCount),
                     style: theme.textTheme.labelSmall?.copyWith(
                       fontWeight: FontWeight.normal,
                     ),

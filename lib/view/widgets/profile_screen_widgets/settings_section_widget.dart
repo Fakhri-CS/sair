@@ -3,11 +3,14 @@ import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 import 'package:sair_cpa/view/routes.dart';
 import 'package:sair_cpa/view/widgets/profile_screen_widgets/settings_tile_widget.dart';
 
-class SettingsSectionWidget extends StatelessWidget {
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sair_cpa/view_model/user_view_provider.dart';
+
+class SettingsSectionWidget extends ConsumerWidget {
   const SettingsSectionWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final l10n = S.of(context); // Initialize localization
 
@@ -51,10 +54,21 @@ class SettingsSectionWidget extends StatelessWidget {
 
           SettingsTileWidget(
             icon: Icons.logout,
-            title: l10n.settingsLogout, // Localized
-            subtitle: l10n.settingsLogoutSubtitle, // Localized
-            onTap: () {
-              Navigator.pushReplacementNamed(context, AppRoute.login.route);
+            title:  l10n.settingsLogout,
+            subtitle: l10n.settingsLogoutSubtitle, 
+            onTap: () async {
+              // 1. Perform backend and storage logout
+              await ref.read(userProfileProvider.notifier).logout();
+              
+              // 2. Clear routing history and go to login
+              if (context.mounted) {
+                Navigator.pushNamedAndRemoveUntil(
+                  context, 
+                  AppRoute.login.route, 
+                  (route) => false,
+                );
+              }
+
             },
             isDestructive: true,
           ),

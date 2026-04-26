@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 
-class ReportStatusCardWidget extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sair_cpa/view_model/selected_report_provider.dart';
+import 'package:sair_cpa/core/extensions/enum_extensions.dart';
+
+class ReportStatusCardWidget extends ConsumerWidget {
   const ReportStatusCardWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final report = ref.watch(selectedReportProvider);
+
+    if (report == null) return const SizedBox.shrink();
     final l10n = S.of(context); // Initialize localization
 
     return Container(
@@ -39,7 +47,7 @@ class ReportStatusCardWidget extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                l10n.reportApprovedStatus, // Localized string
+                "Report ${report.status.value.replaceAll('_', ' ').toUpperCase()}",
                 style: theme.textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: theme.colorScheme.onSurface,
@@ -48,7 +56,7 @@ class ReportStatusCardWidget extends StatelessWidget {
             ],
           ),
           Text(
-            l10n.statusApprovedShort, // Localized string
+            report.status.value.toUpperCase(),
             style: theme.textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.bold,
               color: theme.colorScheme.onSurface,

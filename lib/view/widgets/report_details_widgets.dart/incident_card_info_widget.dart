@@ -1,13 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:sair_cpa/view_model/selected_report_provider.dart';
 import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 import 'package:sair_cpa/view/widgets/report_details_widgets.dart/card_info_item_widget.dart';
 
-class IncidentInfoCardWidget extends StatelessWidget {
+class IncidentInfoCardWidget extends ConsumerWidget {
   const IncidentInfoCardWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final report = ref.watch(selectedReportProvider);
+
+    if (report == null) return const SizedBox.shrink();
+
+    final dateStr = "${report.occurredAt.day}/${report.occurredAt.month}/${report.occurredAt.year}";
+    final timeStr = "${report.occurredAt.hour}:${report.occurredAt.minute.toString().padLeft(2, '0')}";
+    final locationStr = report.address.isNotEmpty 
+        ? report.address 
+        : "${report.lat.toStringAsFixed(4)}, ${report.lng.toStringAsFixed(4)}";
+
     final l10n = S.of(context); // Initialize localization
     return Container(
       width: double.infinity,
@@ -51,14 +63,16 @@ class IncidentInfoCardWidget extends StatelessWidget {
                 child: CardInfoItemWidget(
                   icon: Icons.calendar_today_outlined,
                   label: l10n.dateLabel,
-                  value: "Oct 24, 2023",
+                  value: dateStr,
+
                 ),
               ),
               Expanded(
                 child: CardInfoItemWidget(
                   icon: Icons.access_time_outlined,
                   label: l10n.timeLabel,
-                  value: "10:45 AM",
+                  value: timeStr,
+
                 ),
               ),
             ],
@@ -74,7 +88,7 @@ class IncidentInfoCardWidget extends StatelessWidget {
           CardInfoItemWidget(
             icon: Icons.location_on_outlined,
             label: l10n.locationLabelCap,
-            value: "Sheikh Zayed Road, Near Exit 25",
+            value: locationStr,
           ),
         ],
       ),

@@ -6,12 +6,14 @@ import 'package:sair_cpa/view/widgets/accident_location_widgets/save_button_widg
 import 'package:sair_cpa/view/widgets/global_widgets/sair_app_bar.dart';
 import 'package:sair_cpa/view_model/is_preview_mode_provider.dart';
 
+import 'package:sair_cpa/view_model/selected_report_provider.dart';
+
 class AccidentLocationOnMapScreen extends ConsumerStatefulWidget {
-  final LatLng initialLocation;
+  final LatLng? initialLocation;
 
   const AccidentLocationOnMapScreen({
     super.key,
-    this.initialLocation = const LatLng(31.9522, 35.2332),
+    this.initialLocation,
   });
 
   @override
@@ -23,6 +25,12 @@ class _AccidentLocationOnMapScreenState
     extends ConsumerState<AccidentLocationOnMapScreen> {
   LatLng? _pickedLocation;
   
+  @override
+  void initState() {
+    super.initState();
+    _pickedLocation = widget.initialLocation;
+  }
+
   void _selectLocation(LatLng position) {
     setState(() {
       _pickedLocation = position;
@@ -32,6 +40,14 @@ class _AccidentLocationOnMapScreenState
   @override
   Widget build(BuildContext context) {
     final isPreviewMode = ref.watch(isPreviewModeProvider);
+    final selectedReport = ref.watch(selectedReportProvider);
+
+    LatLng targetLocation = widget.initialLocation ?? const LatLng(31.9522, 35.2332);
+
+    if (isPreviewMode && selectedReport != null) {
+      targetLocation = LatLng(selectedReport.lat, selectedReport.lng);
+      _pickedLocation = targetLocation;
+    }
     final l10n = S.of(context); // Initialize localization
 
     return Scaffold(
@@ -54,7 +70,7 @@ class _AccidentLocationOnMapScreenState
       ),
       body: GoogleMap(
         initialCameraPosition: CameraPosition(
-          target: widget.initialLocation,
+          target: targetLocation,
           zoom: 13,
         ),
         onTap: isPreviewMode ? null : _selectLocation,

@@ -6,6 +6,9 @@ import 'package:sair_cpa/view/widgets/evidence_preview_screen_widgets/evidence_g
 import 'package:sair_cpa/view/widgets/global_widgets/sair_app_bar.dart';
 import 'package:sair_cpa/view_model/evidence_photos_provider.dart';
 
+import 'package:sair_cpa/view_model/is_preview_mode_provider.dart';
+import 'package:sair_cpa/view_model/selected_report_provider.dart';
+
 class EvidencePreviewScreen extends ConsumerWidget {
   const EvidencePreviewScreen({super.key});
 
@@ -13,6 +16,12 @@ class EvidencePreviewScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final evidencePhotos = ref.watch(evidencePhotosProvider);
+    final isPreviewMode = ref.watch(isPreviewModeProvider);
+    final selectedReport = ref.watch(selectedReportProvider);
+
+    final isEmpty = isPreviewMode
+        ? (selectedReport?.mediaUrls.isEmpty ?? true)
+        : evidencePhotos.isEmpty;
     final l10n = S.of(context); // Initialize localization
 
     return Scaffold(
@@ -26,7 +35,7 @@ class EvidencePreviewScreen extends ConsumerWidget {
           ),
         ],
       ),
-      body: evidencePhotos.isEmpty
+      body: isEmpty
           ? const EmptyEvidenceWidget()
           : const EvidenceGridWidget(),
     );

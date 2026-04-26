@@ -4,6 +4,8 @@ import 'package:sair_cpa/generated/l10n.dart'; // Added localization import
 import 'package:sair_cpa/view/widgets/global_widgets/sair_app_bar.dart';
 import 'package:sair_cpa/view/widgets/global_widgets/text_field_widget.dart';
 import 'package:sair_cpa/view_model/authentication_logic_provider.dart';
+import 'package:sair_cpa/view_model/register_view_provider.dart';
+import 'package:sair_cpa/model/user_model.dart';
 
 class RegisterScreen extends ConsumerStatefulWidget {
   const RegisterScreen({super.key});
@@ -22,7 +24,6 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
   final _passwordController = TextEditingController();
 
   bool _isPasswordVisible = false;
-  bool _isLoading = false;
 
   @override
   void dispose() {
@@ -36,8 +37,6 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
 
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
-      setState(() => _isLoading = true);
-
       final requestData = {
         "fullName": _fullNameController.text.trim(),
         "email": _emailController.text.trim(),
@@ -45,22 +44,34 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
         "nationalId": _nationalIdController.text.trim(),
         "password": _passwordController.text,
       };
-      // ref.read(registerViewModelProvider.notifier).register(request);
-      Future.delayed(const Duration(seconds: 2), () {
-        if (mounted) {
-          setState(() => _isLoading = false);
-          // Safely accessing S.of(context) here because mounted is true
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(S.of(context).registerSuccessMessage)), 
-          );
-        }
-      });
+      
+      ref.read(registerViewModelProvider.notifier).register(requestData);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final registerState = ref.watch(registerViewModelProvider);
+
+    ref.listen<AsyncValue<UserModel?>>(registerViewModelProvider, (previous, next) {
+      next.when(
+        data: (user) {
+          if (user != null) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Registration Successful! Please log in.')),
+            );
+            Navigator.pop(context);
+          }
+        },
+        error: (error, stack) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Registration Failed: $error'), backgroundColor: theme.colorScheme.error),
+          );
+        },
+        loading: () {},
+      );
+    });
     final l10n = S.of(context); // Initialize localization
 
     return Scaffold(
@@ -151,7 +162,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                   icon: Icons.badge_outlined,
                   keyboardType: TextInputType.number,
                   validator: (value) {
-                    nationalIdValidatorProvider(value);
+                    return ref.read(nationalIdValidatorProvider(value));
                   },
                 ),
                 const SizedBox(height: 16),
@@ -176,7 +187,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                     },
                   ),
                   validator: (value) {
-                    passwordValidatorProvider(value);
+                    return ref.read(passwordValidatorProvider(value));
                   },
                 ),
                 const SizedBox(height: 32),
@@ -185,13 +196,13 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                   width: double.infinity,
                   height: 52,
                   child: ElevatedButton(
-                    onPressed: _isLoading ? null : _submitForm,
+                    onPressed: registerState.isLoading ? null : _submitForm,
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    child: _isLoading
+                    child: registerState.isLoading
                         ? const SizedBox(
                             width: 24,
                             height: 24,

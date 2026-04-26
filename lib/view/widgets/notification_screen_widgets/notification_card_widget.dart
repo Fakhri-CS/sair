@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sair_cpa/model/notification_model.dart';
 import 'package:intl/intl.dart'; // Import for DateFormat fallback
 import 'package:sair_cpa/generated/l10n.dart';
 import 'package:sair_cpa/model/notificatoin_model.dart';

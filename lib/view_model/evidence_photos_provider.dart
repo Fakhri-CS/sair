@@ -1,6 +1,5 @@
 import 'dart:io';
-
-import 'package:riverpod/riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class EvidencePhotosNotifier extends Notifier<List<File>> {
   @override
@@ -18,6 +17,6 @@ class EvidencePhotosNotifier extends Notifier<List<File>> {
 }
 
 final evidencePhotosProvider =
-    NotifierProvider.autoDispose<EvidencePhotosNotifier, List<File>>(
+    NotifierProvider<EvidencePhotosNotifier, List<File>>(
       EvidencePhotosNotifier.new,
     );

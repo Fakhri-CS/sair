@@ -7,6 +7,9 @@ import 'package:sair_cpa/view/widgets/global_widgets/text_field_widget.dart';
 import 'package:sair_cpa/view/widgets/login_screen_widgets/login_button_widget.dart';
 import 'package:sair_cpa/view_model/authentication_logic_provider.dart';
 
+import 'package:sair_cpa/view_model/login_view_provider.dart';
+import 'package:sair_cpa/model/login_response.dart';
+
 class LoginCardWidget extends ConsumerStatefulWidget {
   const LoginCardWidget({super.key});
 
@@ -17,13 +20,13 @@ class LoginCardWidget extends ConsumerStatefulWidget {
 class _LoginCardWidgetState extends ConsumerState<LoginCardWidget> {
   final _formKey = GlobalKey<FormState>();
 
-  final _nationalIdController = TextEditingController();
+  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _isPasswordVisible = false;
 
   @override
   void dispose() {
-    _nationalIdController.dispose();
+    _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
@@ -31,20 +34,34 @@ class _LoginCardWidgetState extends ConsumerState<LoginCardWidget> {
   void _submitForm() {
     FocusScope.of(context).unfocus();
 
-    // if (_formKey.currentState!.validate()) {
-    //   final nationalId = _nationalIdController.text.trim();
-    //   final password = _passwordController.text;
+    if (_formKey.currentState!.validate()) {
+      final email = _emailController.text.trim();
+      final password = _passwordController.text;
 
-    //   // TODO: Call your Riverpod Authentication ViewModel here
-    //   // Example:
-    //   // ref.read(authViewModelProvider.notifier).login(nationalId, password);
-    // }
-    Navigator.pushReplacementNamed(context, AppRoute.main.route);
+      ref.read(loginViewModelProvider.notifier).login(email, password);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final loginState = ref.watch(loginViewModelProvider);
+
+    ref.listen<AsyncValue<LoginResponse?>>(loginViewModelProvider, (previous, next) {
+      next.when(
+        data: (response) {
+          if (response != null) {
+            Navigator.pushReplacementNamed(context, AppRoute.main.route);
+          }
+        },
+        error: (error, stack) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Login Failed: $error'), backgroundColor: theme.colorScheme.error),
+          );
+        },
+        loading: () {},
+      );
+    });
     final l10n = S.of(context)!; // Initialized localization variable
 
     return Container(
@@ -85,13 +102,18 @@ class _LoginCardWidgetState extends ConsumerState<LoginCardWidget> {
             child: Column(
               children: [
                 RegisterTextFieldWidget(
-                  controller: _nationalIdController,
-                  label: l10n.nationalIdLabel, // Localized
-                  hint: l10n.nationalIdHint, // Localized
-                  icon: Icons.badge_outlined,
-                  keyboardType: TextInputType.number,
+
+                  controller: _emailController,
+                  label: l10n.nationalIdLabel,
+                  hint: l10n.nationalIdHint, 
+                  icon: Icons.email_outlined,
+                  keyboardType: TextInputType.emailAddress,
+
                   validator: (value) {
-                    nationalIdValidatorProvider(value);
+                    if (value == null || value.trim().isEmpty) {
+                      return 'Please enter your email';
+                    }
+                    return null;
                   },
                 ),
                 const SizedBox(height: 20),
@@ -115,7 +137,7 @@ class _LoginCardWidgetState extends ConsumerState<LoginCardWidget> {
                     },
                   ),
                   validator: (value) {
-                    passwordValidatorProvider(value);
+                    return ref.read(passwordValidatorProvider(value));
                   },
                 ),
               ],
@@ -124,7 +146,10 @@ class _LoginCardWidgetState extends ConsumerState<LoginCardWidget> {
 
           const SizedBox(height: 50),
 
-          LoginButtonWidget(onPressed: _submitForm),
+          LoginButtonWidget(
+            onPressed: _submitForm,
+            isLoading: loginState.isLoading,
+          ),
 
           const SizedBox(height: 100),
 

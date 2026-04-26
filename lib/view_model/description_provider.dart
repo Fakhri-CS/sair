@@ -1,3 +1,11 @@
-import 'package:flutter_riverpod/legacy.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final descriptionProvider = StateProvider.autoDispose<String>((_) => "");
+class DescriptionNotifier extends Notifier<String> {
+  @override
+  String build() => "";
+  
+  void update(String value) => state = value;
+  void clear() => state = "";
+}
+
+final descriptionProvider = NotifierProvider<DescriptionNotifier, String>(DescriptionNotifier.new);

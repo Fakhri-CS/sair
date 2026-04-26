@@ -1,91 +1,82 @@
 
+import 'package:sair_cpa/core/enums/app_enums.dart';
+import 'package:sair_cpa/core/extensions/enum_extensions.dart';
 
-import 'dart:io';
-
-import 'package:sair_cpa/model/place_location_model.dart';
-import 'package:uuid/uuid.dart';
-const uuid = Uuid();
 class ReportModel {
-  final String reportId, accidentType, description;
-  final List<String>licensePlates;
-  final PlaceLocationModel? placeLocation;
-  final List<File> evidencePhotos;
-   ReportModel({
-    this.placeLocation,
+  final String id;
+  final String citizenId;
+  final String? officerId;
+  final String zoneId;
+  final double lat;
+  final double lng;
+  final String address;
+  final String accidentType;
+  final String description;
+  final List<String> platesNumber;
+  final DateTime occurredAt;
+  final LocationSource locationSource;
+  final List<String> mediaUrls;
+  final ReportStatus status;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+
+  ReportModel({
+    required this.id,
+    required this.citizenId,
+    this.officerId,
+    required this.zoneId,
+    required this.lat,
+    required this.lng,
+    required this.address,
     required this.accidentType,
-    required this.licensePlates,
     required this.description,
-    required this.evidencePhotos,
-  }) : reportId = uuid.v4();
+    required this.platesNumber,
+    required this.occurredAt,
+    required this.locationSource,
+    required this.mediaUrls,
+    required this.status,
+    required this.createdAt,
+    required this.updatedAt,
+  });
 
-  /// Generates a clean, empty form state.
-  /// The default accident type is set to "Rear-end" to match the UI's initial state.
-  factory ReportModel.initial() {
+  factory ReportModel.fromJson(Map<String, dynamic> json) {
     return ReportModel(
-      placeLocation: null,
-      accidentType: 'Rear-end',
-      licensePlates: [],
-      description: '',
-      evidencePhotos: [],
+      id: json['id'] ?? '',
+      citizenId: json['citizenId'] ?? '',
+      officerId: json['officerId'],
+      zoneId: json['zoneId'] ?? '',
+      lat: (json['lat'] as num?)?.toDouble() ?? 0.0,
+      lng: (json['lng'] as num?)?.toDouble() ?? 0.0,
+      address: json['address'] ?? '',
+      accidentType: json['accidentType'] ?? '',
+      description: json['description'] ?? '',
+      platesNumber: List<String>.from(json['platesNumber'] ?? []),
+      occurredAt: DateTime.parse(json['occurredAt']),
+      locationSource:
+      LocationSourceX.fromString(json['locationSource']),
+      mediaUrls: List<String>.from(json['mediaUrls'] ?? []),
+      status: ReportStatusX.fromString(json['status']),
+      createdAt: DateTime.parse(json['createdAt']),
+      updatedAt: DateTime.parse(json['updatedAt']),
     );
   }
 
-  /// Creates a new instance with updated fields while preserving the rest.
-  /// Highly useful for immutable state management.
-  ReportModel copyWith({
-    PlaceLocationModel? placeLocation,
-    String? accidentType,
-    List<String>? licensePlates,
-    String? description,
-    List<File>? evidencePhotos,
-  }) {
-    return ReportModel(
-      placeLocation: placeLocation ?? this.placeLocation,
-      accidentType: accidentType ?? this.accidentType,
-      licensePlates: licensePlates ?? this.licensePlates,
-      description: description ?? this.description,
-      evidencePhotos: evidencePhotos ?? this.evidencePhotos,
-    );
-  }
-
-  /// Converts the model to a Map for database submission (e.g., Firestore).
-  // Map<String, dynamic> toMap() {
-  //   return {
-  //     'accidentType': accidentType,
-  //     'licensePlate': licensePlate,
-  //     'description': description,
-  //     'evidencePhotos': evidencePhotos,
-  //     'submittedAt': DateTime.now()
-  //         .toIso8601String(), // Useful for your backend
-  //   };
-  // }
-
-  /// Rebuilds the model from a database Map.
-  // factory ReportModel.fromMap(Map<String, dynamic> map) {
-  //   return ReportModel(
-  //     accidentType: map['accidentType'] as String? ?? 'Other',
-  //     licensePlate: map['licensePlate'] as String? ?? '',
-  //     description: map['description'] as String? ?? '',
-  //     evidencePhotos: List<String>.from(map['evidencePhotos'] ?? []),
-  //   );
-  // }
-
-  // @override
-  // bool operator ==(Object other) {
-  //   if (identical(this, other)) return true;
-  //   return other is ReportModel &&
-  //       other.accidentType == accidentType &&
-  //       other.licensePlate == licensePlate &&
-  //       other.description == description &&
-  //       // Simple list equality check (for deeper equality, consider the collection package)
-  //       other.evidencePhotos.length == evidencePhotos.length;
-  // }
-
-  // @override
-  // int get hashCode {
-  //   return accidentType.hashCode ^
-  //       licensePlate.hashCode ^
-  //       description.hashCode ^
-  //       evidencePhotos.hashCode;
-  // }
+  Map<String, dynamic> toJson() => {
+    'id': id,
+    'citizenId': citizenId,
+    'officerId': officerId,
+    'zoneId': zoneId,
+    'lat': lat,
+    'lng': lng,
+    'address': address,
+    'accidentType': accidentType,
+    'description': description,
+    'platesNumber': platesNumber,
+    'occurredAt': occurredAt.toIso8601String(),
+    'locationSource': locationSource.value,
+    'mediaUrls': mediaUrls,
+    'status': status.value,
+    'createdAt': createdAt.toIso8601String(),
+    'updatedAt': updatedAt.toIso8601String(),
+  };
 }
