@@ -1646,6 +1646,17 @@ class S {
       args: [error],
     );
   }
+
+  /// `Right now you can't submit multiple photos.`
+  String get multiplePhotosNotSupported {
+    return Intl.message(
+      'Right now you can\'t submit multiple photos.',
+      name: 'multiplePhotosNotSupported',
+      desc:
+          'Information message explaining the current limitation of the photo upload feature',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

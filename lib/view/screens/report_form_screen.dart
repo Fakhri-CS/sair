@@ -16,12 +16,12 @@ class ReportFormScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final l10n = S.of(context); // Initialize localization
+    final l10n = S.of(context);
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
       appBar: SairAppBar(
-        title: l10n.accidentReportTitle, // Localized string
+        title: l10n.accidentReportTitle,
         actions: [
           IconButton(
             onPressed: () => Navigator.of(context).pop(),
@@ -54,7 +54,7 @@ class ReportFormScreen extends StatelessWidget {
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
-                      "Right now you can't submit multiple photos.",
+                      l10n.multiplePhotosNotSupported,
                       style: theme.textTheme.labelSmall?.copyWith(
                         color: theme.primaryColor.withValues(alpha: 0.8),
                         height: 1.4,

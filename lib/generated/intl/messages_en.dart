@@ -203,6 +203,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "mockLocation": MessageLookupByLibrary.simpleMessage("Al-Olaya, Riyadh"),
     "mockReportId": MessageLookupByLibrary.simpleMessage("SR-99281"),
     "mockStatusApproved": MessageLookupByLibrary.simpleMessage("approved"),
+    "multiplePhotosNotSupported": MessageLookupByLibrary.simpleMessage(
+      "Right now you can\'t submit multiple photos.",
+    ),
     "myReportsNav": MessageLookupByLibrary.simpleMessage("My Reports"),
     "nationalIdHint": MessageLookupByLibrary.simpleMessage("e.g., 1234567890"),
     "nationalIdLabel": MessageLookupByLibrary.simpleMessage("National ID"),

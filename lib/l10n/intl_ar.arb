@@ -163,5 +163,6 @@
   "guestAccount": "حساب زائر",
   "errorLoadingProfileBasic": "خطأ في تحميل الملف الشخصي",
   "reportSubmitSuccess": "تم تقديم البلاغ بنجاح!",
-  "reportSubmitError": "فشل التقديم: {error}"
+  "reportSubmitError": "فشل التقديم: {error}",
+  "multiplePhotosNotSupported": "لا يمكن تقديم أكثر من صورة واحدة في الوقت الحالي."
 }

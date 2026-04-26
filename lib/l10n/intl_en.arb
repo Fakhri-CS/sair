@@ -574,6 +574,10 @@
         "type": "String"
       }
     }
+  },
+  "multiplePhotosNotSupported": "Right now you can't submit multiple photos.",
+  "@multiplePhotosNotSupported": {
+    "description": "Information message explaining the current limitation of the photo upload feature"
   }
   
 }
